@@ -1,0 +1,19 @@
+# ~/.config/mise/config.toml — global language runtimes and tools (linked from
+# the dotfiles repo). Projects override these with their own mise.toml.
+# Each line's comment is "<Category> | <what it's for>"; the README's
+# "What gets installed" table is generated from these comments.
+
+[tools]
+node = "24"                                  # Languages | Node.js runtime (replaces nvm)
+java = "liberica-25"                         # Languages | Java JDK, BellSoft Liberica (replaces SDKMAN)
+gradle = "latest"                            # Languages | Gradle build tool for Java/Kotlin
+scala = "latest"                             # Languages | Scala compiler and REPL
+"pipx:ansible" = "latest"                    # Python tools | Ansible automation (was pip --user)
+"pipx:poetry" = "latest"                     # Python tools | Poetry dependency/packaging manager
+"npm:@openai/codex" = "latest"               # AI | OpenAI Codex CLI
+"npm:typescript-language-server" = "latest"  # Code intelligence | TypeScript LSP for Claude Code's typescript-lsp plugin
+"npm:typescript" = "latest"                  # Code intelligence | TypeScript compiler (tsc), used by the TypeScript LSP
+
+[settings]
+# Install pipx tools with uv (fast, no global pip)
+pipx.uvx = true

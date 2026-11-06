@@ -1,0 +1,61 @@
+# ~/.gitconfig — shared git settings (linked from the dotfiles repo).
+# Your name and email live in ~/.gitconfig.local (created by `./dotfiles link`,
+# never committed), so this file is safe to publish.
+
+[include]
+	# Identity and any machine-specific settings
+	path = ~/.gitconfig.local
+
+[init]
+	# New repositories start on `main`
+	defaultBranch = main
+
+[push]
+	# `git push` pushes the current branch to a branch with the same name
+	default = current
+	# First push of a new branch sets its upstream, no --set-upstream needed
+	autoSetupRemote = true
+
+[pull]
+	# `git pull` replays your commits on top instead of creating merge commits
+	rebase = true
+
+[rebase]
+	# Stash uncommitted changes around a pull/rebase, then restore them
+	autoStash = true
+
+[rerere]
+	# Remember how you resolved a conflict and reuse it next time
+	enabled = true
+
+[diff]
+	# Clearer diffs when code moves around
+	algorithm = histogram
+
+[merge]
+	# Conflicts also show the original text, not just both sides
+	conflictStyle = zdiff3
+
+[branch]
+	# `git branch` lists the most recently used branches first
+	sort = -committerdate
+
+[commit]
+	# Show the diff below the message while you write a commit
+	verbose = true
+
+[help]
+	# `git stauts` asks "did you mean status?"
+	autocorrect = prompt
+
+[core]
+	# Readable, coloured diffs with in-line highlights (git-delta)
+	pager = delta
+
+[interactive]
+	# Same highlighting in `git add -p`
+	diffFilter = delta --color-only
+
+[delta]
+	# n / N jump between files in a diff
+	navigate = true

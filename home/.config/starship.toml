@@ -1,0 +1,44 @@
+# One-line prompt modelled on the old powerlevel10k "lean" setup:
+#   left:  folder path, git branch/status, ❯
+#   right: exit code, command duration, background jobs, language versions, clock
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = false
+format = "$directory$git_branch$git_status$git_state$character"
+right_format = "$status$cmd_duration$jobs$java$nodejs$python$time"
+
+[line_break]
+disabled = true
+
+[directory]
+format = "[ ](blue)[$path]($style)[$read_only]($read_only_style) "
+style = "bold cyan"
+truncation_length = 0
+truncate_to_repo = false
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+
+[git_status]
+format = "([\\[$all_status$ahead_behind\\]]($style) )"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[status]
+disabled = false
+format = "[✘ $status]($style) "
+
+[cmd_duration]
+min_time = 3_000
+format = "took [$duration]($style) "
+
+[jobs]
+format = "[$symbol$number]($style) "
+
+[time]
+disabled = false
+time_format = "%H:%M:%S"
+format = "[ $time]($style)"
+style = "dimmed white"

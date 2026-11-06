@@ -1,0 +1,7 @@
+.zshrc
+.gitconfig
+.ideavimrc
+.config/starship.toml
+.config/git/ignore
+.config/mise/config.toml
+.config/nvim
