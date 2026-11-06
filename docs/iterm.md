@@ -18,7 +18,7 @@ listed.
 
 | Profile | What it changes |
 |---|---|
-| **Main** | JetBrains Mono Nerd Font 16 · **right ⌥ acts as Meta** (see below) · no blue arrow marks next to prompts · mouse reporting on, so scrolling and clicking work inside Claude Code and Neovim — **hold ⌥ while dragging to select text** there |
+| **Main** | JetBrains Mono Nerd Font 16 · **right ⌥ acts as Meta** (see below) · no blue arrow marks next to prompts · mouse: the wheel goes to apps (scrolling works in Claude Code, Neovim), clicks and drags stay with iTerm (normal text selection) |
 | **Hotkey Window** | Same as Main, plus: **double-tap ⌥** from any app slides a full-width terminal down from the top; double-tap again (or click away) to hide it |
 | **Theme: …** (`--themes`) | Catppuccin Mocha, Dracula, Tokyo Night, Gruvbox Dark, Darcula colour schemes to preview |
 

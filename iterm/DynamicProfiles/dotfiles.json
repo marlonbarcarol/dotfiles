@@ -7,7 +7,8 @@
       "Show Mark Indicators": false,
       "Mouse Reporting": true,
       "Mouse Reporting allow mouse wheel": true,
-      "Mouse Reporting allow clicks and drags": true,
+      "Mouse Reporting allow clicks and drags": false,
+      "Automatically Enable Alternate Mouse Scroll": true,
       "Name": "Main",
       "Guid": "dotfiles-main",
       "Tags": [
@@ -21,7 +22,8 @@
       "Show Mark Indicators": false,
       "Mouse Reporting": true,
       "Mouse Reporting allow mouse wheel": true,
-      "Mouse Reporting allow clicks and drags": true,
+      "Mouse Reporting allow clicks and drags": false,
+      "Automatically Enable Alternate Mouse Scroll": true,
       "Name": "Hotkey Window",
       "Guid": "dotfiles-hotkey",
       "Tags": [

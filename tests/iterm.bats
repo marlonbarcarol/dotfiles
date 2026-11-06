@@ -51,8 +51,8 @@ DP() { echo "$HOME/Library/Application Support/iTerm2/DynamicProfiles"; }
   grep -q '^defaults write com.googlecode.iterm2 AlternateMouseScroll -bool false$' "$STUB_LOG"
 }
 
-@test "profiles report the mouse to apps (scrolling in Claude Code)" {
-  run jq -e '[.Profiles[] | ."Mouse Reporting" and ."Mouse Reporting allow mouse wheel" and ."Mouse Reporting allow clicks and drags"] | all' "$REPO_ROOT/iterm/DynamicProfiles/dotfiles.json"
+@test "profiles report the wheel but not drags (scroll in Claude Code, iTerm selects)" {
+  run jq -e '[.Profiles[] | ."Mouse Reporting" and ."Mouse Reporting allow mouse wheel" and (."Mouse Reporting allow clicks and drags" | not) and ."Automatically Enable Alternate Mouse Scroll"] | all' "$REPO_ROOT/iterm/DynamicProfiles/dotfiles.json"
   [ "$status" -eq 0 ]
 }
 
