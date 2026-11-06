@@ -48,6 +48,12 @@ DP() { echo "$HOME/Library/Application Support/iTerm2/DynamicProfiles"; }
   STUB_PS_OUT="/usr/sbin/cfprefsd" run "$REPO_ROOT/dotfiles" iterm
   grep -q '^defaults write com.googlecode.iterm2 NSQuitAlwaysKeepsWindows -bool true$' "$STUB_LOG"
   grep -q '^defaults write com.googlecode.iterm2 OpenNoWindowsAtStartup -bool false$' "$STUB_LOG"
+  grep -q '^defaults write com.googlecode.iterm2 AlternateMouseScroll -bool false$' "$STUB_LOG"
+}
+
+@test "profiles report the mouse to apps (scrolling in Claude Code)" {
+  run jq -e '[.Profiles[] | ."Mouse Reporting" and ."Mouse Reporting allow mouse wheel" and ."Mouse Reporting allow clicks and drags"] | all' "$REPO_ROOT/iterm/DynamicProfiles/dotfiles.json"
+  [ "$status" -eq 0 ]
 }
 
 @test "hotkey profile uses option double-tap" {

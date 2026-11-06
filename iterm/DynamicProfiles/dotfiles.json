@@ -5,7 +5,9 @@
       "Normal Font": "JetBrainsMonoNFM-Regular 16",
       "Right Option Key Sends": 2,
       "Show Mark Indicators": false,
-      "Mouse Reporting": false,
+      "Mouse Reporting": true,
+      "Mouse Reporting allow mouse wheel": true,
+      "Mouse Reporting allow clicks and drags": true,
       "Name": "Main",
       "Guid": "dotfiles-main",
       "Tags": [
@@ -17,7 +19,9 @@
       "Normal Font": "JetBrainsMonoNFM-Regular 16",
       "Right Option Key Sends": 2,
       "Show Mark Indicators": false,
-      "Mouse Reporting": false,
+      "Mouse Reporting": true,
+      "Mouse Reporting allow mouse wheel": true,
+      "Mouse Reporting allow clicks and drags": true,
       "Name": "Hotkey Window",
       "Guid": "dotfiles-hotkey",
       "Tags": [

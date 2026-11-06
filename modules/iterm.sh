@@ -60,6 +60,10 @@ iterm_globals() {
     || skip "iTerm NSQuitAlwaysKeepsWindows" "defaults write failed"
   run_cmd defaults write com.googlecode.iterm2 OpenNoWindowsAtStartup -bool false \
     || skip "iTerm OpenNoWindowsAtStartup" "defaults write failed"
+  # Scroll wheel scrolls inside full-screen apps (Claude Code, Neovim) instead
+  # of being turned into arrow keys (Advanced → Mouse)
+  run_cmd defaults write com.googlecode.iterm2 AlternateMouseScroll -bool false \
+    || skip "iTerm AlternateMouseScroll" "defaults write failed"
 }
 
 iterm_main() {
