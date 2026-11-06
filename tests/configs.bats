@@ -61,3 +61,9 @@ load helpers
   run git -C "$REPO_ROOT" ls-files home/.config/nvim/lazy-lock.json
   [ "$output" = "home/.config/nvim/lazy-lock.json" ]
 }
+
+@test "ansible from mise exposes ansible-core commands on a supported Python" {
+  line=$(grep '"pipx:ansible"' "$REPO_ROOT/home/.config/mise/config.toml")
+  [[ "$line" == *"--with-executables-from ansible-core"* ]] || false
+  [[ "$line" == *"--python 3.13"* ]] || false
+}

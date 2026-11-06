@@ -133,7 +133,7 @@ admin rights.
 | `java` | Languages | Java JDK, BellSoft Liberica (replaces SDKMAN) |
 | `gradle` | Languages | Gradle build tool for Java/Kotlin |
 | `scala` | Languages | Scala compiler and REPL |
-| `pipx:ansible` | Python tools | Ansible automation (was pip --user) |
+| `pipx:ansible` | Python tools | Ansible automation (ansible-core commands; Python 3.13 until it supports 3.15) |
 | `pipx:poetry` | Python tools | Poetry dependency/packaging manager |
 | `npm:@openai/codex` | AI | OpenAI Codex CLI |
 | `npm:typescript-language-server` | Code intelligence | TypeScript LSP for Claude Code's typescript-lsp plugin |
