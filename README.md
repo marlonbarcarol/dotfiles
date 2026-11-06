@@ -115,6 +115,7 @@ admin rights.
 | `btop` | System | better Activity Monitor in the terminal |
 | `neovim` | Editors | Neovim with LazyVim (`vim` is aliased to it) |
 | `nano` | Editors | simple terminal editor, newer than macOS's |
+| `tree-sitter-cli` | Editors | tree-sitter command Neovim (LazyVim) uses to build syntax parsers |
 | `shellcheck` | Quality | catches mistakes in shell scripts |
 | `bats-core` | Quality | test runner for this repo's shell scripts |
 | `iterm2` | Apps | iTerm2 terminal |

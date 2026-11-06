@@ -6,6 +6,10 @@ Installs, in this order:
 2. Everything in the [`Brewfile`](../Brewfile): command-line tools, apps, fonts.
    Apps you installed by hand (dragged into `/Applications`) are **adopted** by
    Homebrew instead of reinstalled, so `brew upgrade` can update them later.
+   **Adopting quits the app if it's running** (e.g. 1Password, Chrome) — save
+   your work first, then just reopen it. An app can't be adopted when its
+   version doesn't match what Homebrew expects (Obsidian, here); update the
+   app or skip it — it's listed at the end and left untouched.
 3. **oh-my-zsh** (if missing) plus its two community plugins,
    `zsh-autosuggestions` and `zsh-syntax-highlighting`.
 4. The language tools in [`home/.config/mise/config.toml`](../home/.config/mise/config.toml)

@@ -56,3 +56,8 @@ load helpers
   # any real /Users/<name> path (placeholders like /Users/<you> are fine)
   ! git -C "$REPO_ROOT" grep -nE '/Users/[A-Za-z0-9._-]+' -- . ':!tests' || false
 }
+
+@test "neovim plugin versions are pinned in the repo" {
+  run git -C "$REPO_ROOT" ls-files home/.config/nvim/lazy-lock.json
+  [ "$output" = "home/.config/nvim/lazy-lock.json" ]
+}

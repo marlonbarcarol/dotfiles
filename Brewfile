@@ -46,6 +46,7 @@ brew "btop"                         # System | better Activity Monitor in the te
 # ---- Editors ----
 brew "neovim"                       # Editors | Neovim with LazyVim (`vim` is aliased to it)
 brew "nano"                         # Editors | simple terminal editor, newer than macOS's
+brew "tree-sitter-cli"              # Editors | tree-sitter command Neovim (LazyVim) uses to build syntax parsers
 
 # ---- Quality ----
 brew "shellcheck"                   # Quality | catches mistakes in shell scripts
