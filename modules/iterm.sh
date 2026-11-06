@@ -44,6 +44,7 @@ iterm_copy() {
 
 # iterm_running: `pgrep` can't see GUI apps from some shells; `ps` can.
 iterm_running() {
+  # shellcheck disable=SC2009  # pgrep is exactly what misses iTerm here
   ps -axo comm 2>/dev/null | grep -q '/iTerm\.app/Contents/MacOS/iTerm2$'
 }
 
