@@ -38,3 +38,12 @@ setup() {
   grep -q '^install --user' "$STUB_LOG"
   ! grep -qE '^(link|iterm|editors) .*--user' "$STUB_LOG" || false
 }
+
+@test "a failing module doesn't stop the others" {
+  printf 'link_help() { :; }\nlink_main() { skip "x" "y"; false; }\n' > "$DOTFILES_MODULES_DIR/link.sh"
+  run "$REPO_ROOT/dotfiles" all
+  [ "$status" -eq 1 ]
+  grep -q '^iterm' "$STUB_LOG"
+  grep -q '^doctor' "$STUB_LOG"
+  [[ "$output" == *"Skipped:"*"x: y"* ]] || false
+}

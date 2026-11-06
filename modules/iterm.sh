@@ -45,7 +45,9 @@ iterm_copy() {
 # iterm_running: `pgrep` can't see GUI apps from some shells; `ps` can.
 iterm_running() {
   # shellcheck disable=SC2009  # pgrep is exactly what misses iTerm here
-  ps -axo comm 2>/dev/null | grep -q '/iTerm\.app/Contents/MacOS/iTerm2$'
+  # grep must read everything: with -q it exits early, ps dies of SIGPIPE and
+  # pipefail turns the pipeline into a failure even when iTerm is running.
+  ps -axo comm 2>/dev/null | grep '/iTerm\.app/Contents/MacOS/iTerm2$' >/dev/null
 }
 
 iterm_globals() {

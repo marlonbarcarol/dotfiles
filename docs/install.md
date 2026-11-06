@@ -74,6 +74,12 @@ node = "24"   # Languages | Node.js runtime
 Java is BellSoft **Liberica 25** (`liberica-25`), the same vendor you used with
 SDKMAN.
 
+Projects that pin versions the old way keep working: mise reads `.nvmrc`,
+`.node-version`, `.java-version` and `.sdkmanrc` files
+(`idiomatic_version_file_enable_tools` in the mise config). Older Java
+versions you had in SDKMAN (11, 20, 21) install on demand: `mise install
+java@liberica-21`, or just `cd` into the project.
+
 ## Per-project versions and tasks (mise)
 
 A `mise.toml` in a project pins that project's versions — they switch

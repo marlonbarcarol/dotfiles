@@ -10,7 +10,10 @@ setup() {
   # pgrep can't see GUI apps from some shells, so it must not decide anything
   export STUB_PGREP_EXIT=1
 }
-ITERM_PROC=/Applications/iTerm.app/Contents/MacOS/iTerm2
+# a realistic, long process list (>64 KB) with iTerm first: grep -q would stop
+# reading early and `ps` would die of SIGPIPE under pipefail
+ITERM_PROC="/Applications/iTerm.app/Contents/MacOS/iTerm2
+$(for i in $(seq 1 3000); do echo "/System/Library/PrivateFrameworks/Example$i.framework/Versions/A/Resources/helper"; done)"
 
 DP() { echo "$HOME/Library/Application Support/iTerm2/DynamicProfiles"; }
 

@@ -15,5 +15,7 @@ scala = "latest"                             # Languages | Scala compiler and RE
 "npm:typescript" = "latest"                  # Code intelligence | TypeScript compiler (tsc), used by the TypeScript LSP
 
 [settings]
+# Respect projects' .nvmrc / .node-version / .java-version / .sdkmanrc files
+idiomatic_version_file_enable_tools = ["node", "java"]
 # Install pipx tools with uv (fast, no global pip)
 pipx.uvx = true

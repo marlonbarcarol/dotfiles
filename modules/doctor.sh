@@ -95,7 +95,9 @@ doctor_brew() {
 doctor_mise() {
   command -v mise >/dev/null 2>&1 || { _fail mise "not installed — run ./dotfiles install"; return; }
   local missing
-  missing="$(mise ls --missing 2>/dev/null </dev/null | awk '{print $1}' | tr '\n' ' ' | sed 's/ $//')"
+  # Check the repo's config: before `link`, mise's live global config may not exist.
+  missing="$(MISE_GLOBAL_CONFIG_FILE="$DOTFILES_ROOT/home/.config/mise/config.toml" \
+    mise ls --missing 2>/dev/null </dev/null | awk '{print $1}' | tr '\n' ' ' | sed 's/ $//' || true)"
   if [ -n "$missing" ]; then
     _fail mise "missing: $missing — run mise install"
   else
@@ -114,7 +116,7 @@ doctor_path() {
     esac
   fi
   java="$(command -v java || true)"
-  if [ -z "$java" ] || [ "$java" = /usr/bin/java ]; then
+  if [ -z "$java" ] || [[ "$java" != */mise/* ]]; then
     _warn "PATH java" "java isn't coming from mise — open a new shell, or run mise install"
   else
     _ok "PATH java" "$java"

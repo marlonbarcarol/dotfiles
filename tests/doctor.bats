@@ -67,3 +67,16 @@ setup() {
   ! grep -vE '^(brew bundle check|brew leaves|brew list --cask$|brew tap$|mise ls|  env )' "$STUB_LOG" || false
   ! grep -q -- '--force' "$STUB_LOG" || false
 }
+
+@test "doctor checks mise against the repo config" {
+  run "$REPO/dotfiles" doctor
+  grep -q "^mise ls --missing" "$STUB_LOG"
+  STUB_LOG_ENV=MISE_GLOBAL_CONFIG_FILE run "$REPO/dotfiles" doctor
+  grep -q "env MISE_GLOBAL_CONFIG_FILE=$REPO/home/.config/mise/config.toml" "$STUB_LOG"
+}
+
+@test "doctor warns when java is not from mise" {
+  mkdir -p "$BATS_TEST_TMPDIR/sdk/bin"; ln -s "$REPO_ROOT/tests/stubs/_stub" "$BATS_TEST_TMPDIR/sdk/bin/java"
+  PATH="$BATS_TEST_TMPDIR/sdk/bin:$PATH" run "$REPO/dotfiles" doctor
+  [[ "$output" == *"warn PATH java"* ]] || false
+}

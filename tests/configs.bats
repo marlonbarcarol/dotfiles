@@ -47,3 +47,12 @@ load helpers
   run git -C "$REPO_ROOT" ls-files '*zcompdump*'
   [ -z "$output" ]
 }
+
+@test "mise honours .nvmrc and .java-version files" {
+  grep -qE '^idiomatic_version_file_enable_tools = \[.*"node".*"java".*\]' "$REPO_ROOT/home/.config/mise/config.toml"
+}
+
+@test "docs carry no local username" {
+  # any real /Users/<name> path (placeholders like /Users/<you> are fine)
+  ! git -C "$REPO_ROOT" grep -nE '/Users/[A-Za-z0-9._-]+' -- . ':!tests' || false
+}
