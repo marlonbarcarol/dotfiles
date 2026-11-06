@@ -1,0 +1,38 @@
+{
+  "Profiles": [
+    {
+      "Dynamic Profile Parent Name": "Default",
+      "Normal Font": "JetBrainsMonoNFM-Regular 16",
+      "Right Option Key Sends": 2,
+      "Show Mark Indicators": false,
+      "Name": "Main",
+      "Guid": "dotfiles-main",
+      "Tags": [
+        "dotfiles"
+      ]
+    },
+    {
+      "Dynamic Profile Parent Name": "Default",
+      "Normal Font": "JetBrainsMonoNFM-Regular 16",
+      "Right Option Key Sends": 2,
+      "Show Mark Indicators": false,
+      "Name": "Hotkey Window",
+      "Guid": "dotfiles-hotkey",
+      "Tags": [
+        "dotfiles"
+      ],
+      "Has Hotkey": true,
+      "HotKey Activated By Modifier": true,
+      "HotKey Modifier Activation": 2,
+      "HotKey Window Animates": true,
+      "HotKey Window Floats": true,
+      "HotKey Window AutoHides": true,
+      "HotKey Window Reopens On Activation": false,
+      "Window Type": 2,
+      "Screen": -1,
+      "Space": -1,
+      "Rows": 25,
+      "Transparency": 0.05
+    }
+  ]
+}
