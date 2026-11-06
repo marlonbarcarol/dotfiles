@@ -1,0 +1,13 @@
+#!/bin/bash
+# Test stub: records "<name> <args>" in $STUB_LOG, prints $STUB_<NAME>_OUT,
+# exits with $STUB_<NAME>_EXIT (default 0). NAME is the uppercased command
+# name with '-' turned into '_'.
+name=$(basename "$0")
+upper=$(printf '%s' "$name" | tr '[:lower:]-' '[:upper:]_')
+printf '%s\n' "$name $*" >> "${STUB_LOG:-/dev/null}"
+out_var="STUB_${upper}_OUT"
+exit_var="STUB_${upper}_EXIT"
+if [ -n "${!out_var:-}" ]; then
+  printf '%s\n' "${!out_var}"
+fi
+exit "${!exit_var:-0}"

@@ -1,0 +1,75 @@
+#!/bin/bash
+# dotfiles: run one part of the Mac setup, or all of it.
+# Usage: ./dotfiles <module> [--dry-run] [--help] [args...]
+set -euo pipefail
+
+DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export DOTFILES_ROOT
+# shellcheck source=lib/common.sh
+. "$DOTFILES_ROOT/lib/common.sh"
+
+DOTFILES_MODULES_DIR="${DOTFILES_MODULES_DIR:-$DOTFILES_ROOT/modules}"
+ALL_ORDER="install link macos iterm editors"
+
+usage() {
+  cat <<'EOF'
+Usage: ./dotfiles <module> [--dry-run] [--help] [args...]
+
+Modules:
+  install   Homebrew + Brewfile, mise tools, oh-my-zsh, Claude Code
+  link      Link config files into your home folder (backs up what it replaces)
+  macos     Apply macOS settings (dock, hot-corners, keyboard, trackpad, finder, system)
+  iterm     Install iTerm2 profiles and settings
+  editors   VS Code extensions, Neovim plugins
+  update    Update everything, or one part: brew | mise | omz | nvim | tldr
+  doctor    Check what's set up and what's missing (changes nothing)
+  all       install, link, macos, iterm, editors, then doctor (fresh Mac)
+
+Options:
+  --dry-run   Show what would change without changing anything
+  --help      Show help for a module
+
+Docs: README.md and docs/<module>.md
+EOF
+}
+
+run_module() {
+  local name="$1"; shift
+  local file="$DOTFILES_MODULES_DIR/$name.sh"
+  if [ ! -f "$file" ]; then
+    echo "Unknown module: $name (see ./dotfiles --help)" >&2
+    exit 2
+  fi
+  # shellcheck source=/dev/null
+  . "$file"
+  local args=()
+  local a
+  for a in "$@"; do
+    case "$a" in
+      --dry-run) DRY_RUN=1 ;;
+      --help|-h) "${name}_help"; return 0 ;;
+      *) args+=("$a") ;;
+    esac
+  done
+  export DRY_RUN
+  "${name}_main" ${args[@]+"${args[@]}"}
+}
+
+main() {
+  if [ $# -eq 0 ]; then usage; exit 2; fi
+  case "$1" in
+    --help|-h|help) usage ;;
+    all)
+      shift
+      local m
+      for m in $ALL_ORDER doctor; do
+        log "module: $m"
+        ( run_module "$m" "$@" )
+      done
+      print_skips
+      ;;
+    *) run_module "$@" ;;
+  esac
+}
+
+main "$@"

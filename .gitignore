@@ -1,1 +1,6 @@
+# Executor scratch space (plans, ledgers)
 .superpowers/
+# Machine-specific / secret overrides are never tracked
+*.local
+.DS_Store
+# Note: home/.config/nvim/lazy-lock.json IS tracked (pins Neovim plugins)
