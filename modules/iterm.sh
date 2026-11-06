@@ -42,8 +42,13 @@ iterm_copy() {
   echo "installed $name"
 }
 
+# iterm_running: `pgrep` can't see GUI apps from some shells; `ps` can.
+iterm_running() {
+  ps -axo comm 2>/dev/null | grep -q '/iTerm\.app/Contents/MacOS/iTerm2$'
+}
+
 iterm_globals() {
-  if pgrep -x iTerm2 >/dev/null 2>&1; then
+  if iterm_running; then
     skip "iTerm global settings" "iTerm is running and would overwrite them — quit iTerm and run ./dotfiles iterm from Terminal.app"
     return 0
   fi
