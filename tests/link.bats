@@ -122,3 +122,16 @@ entries() { grep -v '^$' "$REPO/links.txt"; }
   [ "$status" -eq 0 ]
   [ "$(git -C "$REPO" config core.hooksPath)" = ".githooks" ]
 }
+
+@test "gitconfig is a local file that includes the repo settings" {
+  run "$REPO/dotfiles" link
+  [ -f "$HOME/.gitconfig" ] && [ ! -L "$HOME/.gitconfig" ]
+  [ "$(git config -f "$HOME/.gitconfig" --get-all include.path | head -1)" = "$REPO/home/.gitconfig" ]
+  [ "$(git config --includes --global pull.rebase)" = "true" ]
+}
+
+@test "git config --global never writes into the repo" {
+  "$REPO/dotfiles" link > /dev/null 2>&1
+  git config --global user.email leak@example.com
+  ! grep -q 'leak@example.com' "$REPO/home/.gitconfig" || false
+}

@@ -86,3 +86,12 @@ setup() {
   [ "$(wc -l < "$REPO_ROOT/home/.claude/CLAUDE.md" | tr -d ' ')" -eq 2 ]
   grep -qx -- '- British English.' "$REPO_ROOT/home/.claude/CLAUDE.md"
 }
+
+@test "broken private settings keep the live file intact" {
+  echo '{"mine":true}' > "$HOME/.claude/settings.json"
+  echo '{ not json' > "$HOME/.claude/settings.private.json"
+  run "$REPO/dotfiles" link
+  [ "$status" -eq 0 ]
+  [ "$(jq -r .mine "$HOME/.claude/settings.json")" = "true" ]
+  [[ "$output" == *"Skipped:"*"settings"* ]] || false
+}

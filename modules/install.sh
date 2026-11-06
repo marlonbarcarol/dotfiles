@@ -42,10 +42,12 @@ brewfile_for_mode() {
 # adopt_existing_casks <Brewfile>: let Homebrew take over apps installed by hand.
 adopt_existing_casks() {
   local file="$1" token app dir
+  # No Homebrew yet (fresh Mac, or a dry run before it's installed): nothing to adopt.
+  command -v "$BREW" >/dev/null 2>&1 || return 0
   while IFS= read -r token; do
     "$BREW" list --cask "$token" >/dev/null 2>&1 </dev/null && continue
     app="$("$BREW" info --cask --json=v2 "$token" 2>/dev/null </dev/null \
-      | jq -r '.casks[0].artifacts[] | .app? // empty | .[] | strings' 2>/dev/null | head -1)"
+      | jq -r '.casks[0].artifacts[] | .app? // empty | .[] | strings' 2>/dev/null | head -1 || true)"
     [ -n "$app" ] || continue
     for dir in $DOTFILES_APPDIRS; do
       if [ -d "$dir/$app" ]; then
@@ -71,6 +73,10 @@ install_homebrew() {
     run_cmd git clone --depth 1 https://github.com/Homebrew/brew "$prefix"
   fi
   BREW="$prefix/bin/brew"
+  # Put the new Homebrew on PATH for the rest of this run.
+  if [ -x "$BREW" ]; then
+    eval "$("$BREW" shellenv)"
+  fi
 }
 
 install_ohmyzsh() {
@@ -96,6 +102,8 @@ install_mise_tools() {
   # Use the repo's config directly: `link` (which links it into ~) may not have run yet.
   run_cmd env MISE_GLOBAL_CONFIG_FILE="$DOTFILES_ROOT/home/.config/mise/config.toml" mise install \
     || skip "mise tools" "mise install failed; run it again to see why"
+  # Node (npx) etc. for the rest of this run
+  export PATH="$HOME/.local/share/mise/shims:$PATH"
 }
 
 install_main() {

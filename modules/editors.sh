@@ -36,7 +36,8 @@ editors_neovim() {
     skip "Neovim plugins" "nvim isn't installed (run ./dotfiles install)"
     return 0
   fi
-  run_cmd nvim --headless "+Lazy! sync" +qa </dev/null \
+  # restore = install exactly the versions in lazy-lock.json (sync would update them)
+  run_cmd nvim --headless "+Lazy! restore" +qa </dev/null \
     || skip "Neovim plugins" "Lazy sync failed; open nvim and run :Lazy"
 }
 

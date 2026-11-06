@@ -35,6 +35,15 @@ claude_settings_merge() {
     echo "would: generate ~/.claude/settings.json from repo + settings.private.json"
     return 0
   fi
+  # Merge into a temp file first: a broken private file must not leave Claude
+  # Code with an empty settings file.
+  local tmp
+  tmp="$(mktemp)"
+  if ! _claude_merged > "$tmp" 2>/dev/null; then
+    rm -f "$tmp"
+    skip "claude settings" "couldn't merge — is ~/.claude/settings.private.json valid JSON? (jq . ~/.claude/settings.private.json)"
+    return 0
+  fi
   if [ -e "$CLAUDE_LIVE_SETTINGS" ] || [ -L "$CLAUDE_LIVE_SETTINGS" ]; then
     local bdir
     bdir="$(backup_dir)"
@@ -43,7 +52,7 @@ claude_settings_merge() {
     printf '%s\n' ".claude/settings.json" >> "$bdir/.manifest"
   fi
   mkdir -p "$(dirname "$CLAUDE_LIVE_SETTINGS")"
-  _claude_merged > "$CLAUDE_LIVE_SETTINGS"
+  mv "$tmp" "$CLAUDE_LIVE_SETTINGS"
   echo "generated .claude/settings.json"
 }
 

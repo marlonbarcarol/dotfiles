@@ -1,4 +1,7 @@
 # Shared bats setup: sandbox $HOME, stubbed system commands, admin mode.
+# Modules must only see stubs and the test's own PATH, never this Mac's tools.
+export DOTFILES_NO_PATH_SETUP=1
+
 REPO_ROOT="$(cd "$(dirname "$BATS_TEST_FILENAME")/.." && pwd)"
 
 setup() {

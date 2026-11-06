@@ -29,6 +29,15 @@ _ok()   { printf 'ok %s: %s\n' "$1" "$2"; }
 _warn() { printf 'warn %s: %s\n' "$1" "$2"; }
 _fail() { printf 'fail %s: %s\n' "$1" "$2"; _DOCTOR_FAILED=1; }
 
+doctor_gitconfig() {
+  if [ -f "$HOME/.gitconfig" ] && [ ! -L "$HOME/.gitconfig" ] \
+     && git config -f "$HOME/.gitconfig" --get-all include.path 2>/dev/null | grep -qx "$DOTFILES_ROOT/home/.gitconfig"; then
+    _ok "gitconfig" "includes the repo settings"
+  else
+    _fail "gitconfig" "your .gitconfig doesn't include the repo settings — run ./dotfiles link"
+  fi
+}
+
 doctor_mode() {
   local mode=admin brew
   is_admin || mode=user
@@ -148,6 +157,7 @@ doctor_main() {
   [ $# -eq 0 ] || { warn "doctor takes no options"; return 2; }
   doctor_mode
   doctor_links
+  doctor_gitconfig
   doctor_brew
   doctor_mise
   doctor_path

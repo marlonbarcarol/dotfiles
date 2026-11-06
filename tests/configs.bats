@@ -42,3 +42,8 @@ load helpers
   run gitleaks dir "$REPO_ROOT" --no-banner
   [ "$status" -eq 0 ]
 }
+
+@test "no zsh completion caches are tracked" {
+  run git -C "$REPO_ROOT" ls-files '*zcompdump*'
+  [ -z "$output" ]
+}

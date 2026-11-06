@@ -15,9 +15,9 @@ setup() {
   grep -q '^code --install-extension redhat.java$' "$STUB_LOG"
 }
 
-@test "syncs lazyvim plugins" {
+@test "runs lazyvim headless" {
   run "$REPO_ROOT/dotfiles" editors
-  grep -q '^nvim --headless +Lazy! sync +qa$' "$STUB_LOG"
+  grep -q "^nvim --headless" "$STUB_LOG"
 }
 
 @test "missing code is skipped" {
@@ -38,4 +38,10 @@ setup() {
   [ "$status" -eq 0 ]
   ! grep -qE '^(code --install|nvim)' "$STUB_LOG" || false
   [[ "$output" == *"would: code --install-extension"* ]] || false
+}
+
+@test "editors installs pinned plugin versions" {
+  run "$REPO_ROOT/dotfiles" editors
+  grep -q '^nvim --headless +Lazy! restore +qa$' "$STUB_LOG"
+  ! grep -q 'Lazy! sync' "$STUB_LOG" || false
 }

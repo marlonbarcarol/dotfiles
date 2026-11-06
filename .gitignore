@@ -4,3 +4,5 @@
 *.local
 .DS_Store
 # Note: home/.config/nvim/lazy-lock.json IS tracked (pins Neovim plugins)
+# zsh completion caches (contain local paths/hostname)
+.zcompdump*

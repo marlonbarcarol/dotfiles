@@ -7,8 +7,9 @@
 
 - Installs any VS Code extension listed in `vscode/extensions.txt` that you
   don't have yet.
-- Installs Neovim plugins at the versions pinned in
-  `home/.config/nvim/lazy-lock.json`.
+- Installs Neovim plugins at exactly the versions pinned in
+  `home/.config/nvim/lazy-lock.json` (`Lazy! restore`; `./dotfiles update
+  nvim` is what moves them forward).
 - **Never writes VS Code or IntelliJ settings** — each editor's own Settings
   Sync owns those (see below).
 

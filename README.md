@@ -12,7 +12,7 @@ xcode-select --install                     # Apple's command-line tools (git, et
 git clone https://github.com/<owner>/dotfiles ~/project/dotfiles
 cd ~/project/dotfiles
 ./dotfiles all --dry-run                   # see everything it would do
-./dotfiles all                             # do it
+./dotfiles all                             # do it (add --with-macos to apply Mac settings too)
 ```
 
 While the repo is private, sign in first so `git clone` works:
@@ -34,7 +34,7 @@ Every module can run on its own, is safe to re-run, and supports `--help` and
 | `./dotfiles editors` | VS Code extensions, Neovim plugins | No |
 | `./dotfiles update [part…]` | upgrades everything, or `brew` / `mise` / `omz` / `nvim` / `tldr` | No |
 | `./dotfiles doctor` | checks what's set up and what's missing — changes nothing | No |
-| `./dotfiles all` | `install`, `link`, `macos`, `iterm`, `editors`, then `doctor` | — |
+| `./dotfiles all` | `install`, `link`, `iterm`, `editors`, then `doctor`; add `--with-macos` to include `macos`, `--user`/`--admin` to pick the install mode | — |
 
 Details, and how to undo each one:
 [install](docs/install.md) ·
@@ -176,6 +176,9 @@ This repo is meant to be public, so:
 - **Never tracked:** `~/.ssh`, `~/.aws`, `~/.kube`, `~/.npmrc`, `~/.docker`,
   `~/.claude.json`, Codex `auth.json`, iTerm's full settings file, and any
   `*.local` file.
+- **`~/.gitconfig` is a local file**, not a link: it `[include]`s the repo's
+  settings, so `git config --global …` (or tools that edit it) can never
+  write your details into the repo.
 - **Private bits live in local files:** `~/.gitconfig.local` (name, email),
   `~/.zshrc.local` (machine or secret shell settings),
   `~/.claude/settings.private.json`. They're created once and never

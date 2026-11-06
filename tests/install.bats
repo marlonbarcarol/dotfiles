@@ -91,3 +91,17 @@ setup() {
   [[ "$output" != *"Entries marked"* ]] || false
   [[ "$output" == *"docker-desktop"* ]] || false
 }
+
+@test "failed brew lookup does not stop install" {
+  mkdir -p "$HOME/Applications/iTerm.app"
+  export STUB_BREW_LIST_EXIT=1 STUB_BREW_INFO_EXIT=1
+  run "$REPO_ROOT/dotfiles" install
+  [ "$status" -eq 0 ]
+  grep -q '^mise install' "$STUB_LOG"
+}
+
+@test "dry-run on a Mac without Homebrew still finishes" {
+  unset DOTFILES_BREW; DOTFILES_MODE=user run "$REPO_ROOT/dotfiles" install --dry-run
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"would: env MISE_GLOBAL_CONFIG_FILE"* ]] || false
+}

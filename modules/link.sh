@@ -48,6 +48,38 @@ link_one() {
   echo "$state $rel"
 }
 
+# gitconfig_stub: the exact contents of ~/.gitconfig. It's a real local file
+# (not a link) so `git config --global ...` writes here, never into the
+# public repo; shared settings come in through the include.
+gitconfig_stub() {
+  printf '# Local git config (not tracked). Shared settings come from the dotfiles repo;\n'
+  # shellcheck disable=SC2016  # backticks are literal text in the file
+  printf '# `git config --global ...` writes here, never into the repo.\n'
+  printf '[include]\n\tpath = %s\n' "$DOTFILES_ROOT/home/.gitconfig"
+}
+
+# ensure_gitconfig: write ~/.gitconfig as the stub, backing up anything else.
+ensure_gitconfig() {
+  local dst="$HOME/.gitconfig"
+  if [ -f "$dst" ] && [ ! -L "$dst" ] && [ "$(cat "$dst")" = "$(gitconfig_stub)" ]; then
+    echo "ok .gitconfig (includes repo settings)"
+    return 0
+  fi
+  if [ "$DRY_RUN" = "1" ]; then
+    echo "would: write ~/.gitconfig that includes $DOTFILES_ROOT/home/.gitconfig"
+    return 0
+  fi
+  if [ -e "$dst" ] || [ -L "$dst" ]; then
+    local bdir
+    bdir="$(backup_dir)"
+    mkdir -p "$bdir"
+    mv "$dst" "$bdir/.gitconfig"
+    printf '%s\n' ".gitconfig" >> "$bdir/.manifest"
+  fi
+  gitconfig_stub > "$dst"
+  echo "wrote .gitconfig (includes repo settings)"
+}
+
 # ensure_local_files: untracked per-machine files, created once, never touched again.
 ensure_local_files() {
   if [ ! -e "$HOME/.zshrc.local" ]; then
@@ -135,6 +167,7 @@ link_main() {
     link_one "$rel"
   done < "$links"
 
+  ensure_gitconfig
   ensure_local_files
   ensure_git_identity "$def_name" "$def_email"
   ensure_hooks
