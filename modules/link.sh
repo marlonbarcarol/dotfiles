@@ -20,6 +20,9 @@ Docs: docs/link.md
 EOF
 }
 
+# shellcheck source=/dev/null
+. "$DOTFILES_ROOT/modules/claude.sh"
+
 # link_one <relpath>: link $HOME/<relpath> to the repo copy; prints the state.
 link_one() {
   local rel="$1"
@@ -135,5 +138,7 @@ link_main() {
   ensure_local_files
   ensure_git_identity "$def_name" "$def_email"
   ensure_hooks
+  claude_settings_merge
+  claude_skills_install
   print_skips
 }

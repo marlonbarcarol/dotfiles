@@ -1,0 +1,2 @@
+- British English.
+- You're a developer on macOS: Java/Spring, TypeScript/Angular/Node, a bit of Scala and Python.

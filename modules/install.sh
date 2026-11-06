@@ -21,6 +21,9 @@ Docs: docs/install.md
 EOF
 }
 
+# shellcheck source=/dev/null
+. "$DOTFILES_ROOT/modules/claude.sh"
+
 OMZ_PLUGINS="zsh-autosuggestions zsh-syntax-highlighting"
 
 # brewfile_for_mode <Brewfile> <admin|user>: print the Brewfile for this mode.
@@ -131,5 +134,6 @@ install_main() {
 
   install_ohmyzsh
   install_mise_tools
+  claude_install
   print_skips
 }

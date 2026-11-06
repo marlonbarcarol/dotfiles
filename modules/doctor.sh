@@ -135,6 +135,15 @@ doctor_git() {
   fi
 }
 
+doctor_claude() {
+  [ -f "$CLAUDE_REPO_SETTINGS" ] || return 0
+  if claude_settings_drift; then
+    _ok "claude settings" "matches repo + private settings"
+  else
+    _warn "claude settings" "the live settings.json differs from the repo (changed via /config or /plugin?) — copy the change into home/.claude/settings.json, then ./dotfiles link"
+  fi
+}
+
 doctor_main() {
   [ $# -eq 0 ] || { warn "doctor takes no options"; return 2; }
   doctor_mode
@@ -144,5 +153,6 @@ doctor_main() {
   doctor_path
   doctor_readme
   doctor_git
+  doctor_claude
   [ "$_DOCTOR_FAILED" = 0 ]
 }

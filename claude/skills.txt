@@ -1,0 +1,2 @@
+security-audit https://github.com/cloudflare/security-audit-skill
+find-skills https://github.com/vercel-labs/skills

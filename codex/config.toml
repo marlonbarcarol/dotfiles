@@ -1,0 +1,22 @@
+# Codex preferences — REFERENCE COPY, not linked.
+# The Codex app owns ~/.codex/config.toml and rewrites it with machine-specific
+# entries (app paths, computer-use helpers, per-project trust, MCP servers), so
+# this repo only records the choices worth carrying to a new Mac. Copy the
+# parts you want into ~/.codex/config.toml (or set them in Codex's settings).
+# Never tracked: ~/.codex/auth.json, ~/.codex/rules/ (per-project approvals),
+# sessions, history and sqlite files.
+
+model_reasoning_effort = "medium"
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+
+[marketplaces.mattpocock]
+source_type = "git"
+source = "https://github.com/mattpocock/skills.git"
+
+[plugins."mattpocock-skills@mattpocock"]
+enabled = true
+
+[tui]
+status_line = ["model-with-reasoning", "thread-name", "run-state", "context-remaining", "context-used", "five-hour-limit", "context-window-size", "used-tokens", "task-progress"]
+status_line_use_colors = true

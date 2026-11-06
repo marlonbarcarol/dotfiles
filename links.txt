@@ -5,3 +5,5 @@
 .config/git/ignore
 .config/mise/config.toml
 .config/nvim
+.claude/statusline-command.sh
+.claude/CLAUDE.md
