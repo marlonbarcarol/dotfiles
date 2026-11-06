@@ -5,6 +5,7 @@
       "Normal Font": "JetBrainsMonoNFM-Regular 16",
       "Right Option Key Sends": 2,
       "Show Mark Indicators": false,
+      "Mouse Reporting": false,
       "Name": "Main",
       "Guid": "dotfiles-main",
       "Tags": [
@@ -16,6 +17,7 @@
       "Normal Font": "JetBrainsMonoNFM-Regular 16",
       "Right Option Key Sends": 2,
       "Show Mark Indicators": false,
+      "Mouse Reporting": false,
       "Name": "Hotkey Window",
       "Guid": "dotfiles-hotkey",
       "Tags": [

@@ -18,7 +18,7 @@ listed.
 
 | Profile | What it changes |
 |---|---|
-| **Main** | JetBrains Mono Nerd Font 16 · **right ⌥ acts as Meta** (see below) · no blue arrow marks next to prompts |
+| **Main** | JetBrains Mono Nerd Font 16 · **right ⌥ acts as Meta** (see below) · no blue arrow marks next to prompts · mouse reporting off (plain text selection; scroll and click inside Neovim/lazygit no longer work) |
 | **Hotkey Window** | Same as Main, plus: **double-tap ⌥** from any app slides a full-width terminal down from the top; double-tap again (or click away) to hide it |
 | **Theme: …** (`--themes`) | Catppuccin Mocha, Dracula, Tokyo Night, Gruvbox Dark, Darcula colour schemes to preview |
 
