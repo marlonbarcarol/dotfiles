@@ -1,0 +1,6 @@
+[tools]
+node = "24"  # Languages | Node.js runtime
+"npm:typescript" = "latest"  # Code intelligence | TypeScript compiler
+
+[settings]
+pipx.uvx = true
