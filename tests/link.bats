@@ -66,7 +66,7 @@ entries() { grep -v '^$' "$REPO/links.txt"; }
   [ "$status" -eq 0 ]
   after=$(cd "$HOME" && find . | sort)
   [ "$before" = "$after" ]
-  [[ "$output" == *"would:"* ]]
+  [[ "$output" == *"would:"* ]] || false
 }
 
 @test "link restore puts backup back" {
@@ -104,7 +104,7 @@ entries() { grep -v '^$' "$REPO/links.txt"; }
   unset DOTFILES_GIT_NAME DOTFILES_GIT_EMAIL
   run "$REPO/dotfiles" link < /dev/null
   [ "$status" -eq 0 ]
-  [[ "$output" == *"skipped git identity"* ]]
+  [[ "$output" == *"skipped git identity"* ]] || false
   [ ! -e "$HOME/.gitconfig.local" ]
 }
 

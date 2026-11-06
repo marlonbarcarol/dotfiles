@@ -1,12 +1,19 @@
 #!/bin/bash
-# Test stub: records "<name> <args>" in $STUB_LOG, prints $STUB_<NAME>_OUT,
-# exits with $STUB_<NAME>_EXIT (default 0). NAME is the uppercased command
-# name with '-' turned into '_'.
+# Test stub: records "<name> <args>" in $STUB_LOG and answers from env vars.
+#   STUB_<NAME>_<SUB>_OUT / _EXIT  for a specific first argument (e.g. STUB_BREW_LIST_EXIT)
+#   STUB_<NAME>_OUT / _EXIT        for any call
+# NAME/SUB are uppercased with '-' turned into '_'. Exit defaults to 0.
+# STUB_LOG_ENV="VAR1 VAR2" also logs those variables' values.
+up() { printf '%s' "$1" | tr '[:lower:]-' '[:upper:]_' | tr -cd 'A-Z0-9_'; }
 name=$(basename "$0")
-upper=$(printf '%s' "$name" | tr '[:lower:]-' '[:upper:]_')
+n=$(up "$name")
+s=$(up "${1:-}")
 printf '%s\n' "$name $*" >> "${STUB_LOG:-/dev/null}"
-out_var="STUB_${upper}_OUT"
-exit_var="STUB_${upper}_EXIT"
+for v in ${STUB_LOG_ENV:-}; do
+  [ -n "${!v:-}" ] && printf '  env %s=%s\n' "$v" "${!v}" >> "${STUB_LOG:-/dev/null}"
+done
+out_var="STUB_${n}_${s}_OUT"; [ -n "$s" ] && [ -n "${!out_var+x}" ] || out_var="STUB_${n}_OUT"
+exit_var="STUB_${n}_${s}_EXIT"; [ -n "$s" ] && [ -n "${!exit_var+x}" ] || exit_var="STUB_${n}_EXIT"
 if [ -n "${!out_var:-}" ]; then
   printf '%s\n' "${!out_var}"
 fi

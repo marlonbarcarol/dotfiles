@@ -11,7 +11,7 @@ load helpers
 @test "unknown module exits 2" {
   run "$REPO_ROOT/dotfiles" nope
   [ "$status" -eq 2 ]
-  [[ "$output" == *"nope"* ]]
+  [[ "$output" == *"nope"* ]] || false
 }
 
 @test "dry-run is passed to module" {

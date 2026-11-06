@@ -27,7 +27,7 @@ load helpers
   [ -f "$REPO_ROOT/home/.config/starship.toml" ]
   STARSHIP_CONFIG="$REPO_ROOT/home/.config/starship.toml" run starship print-config
   [ "$status" -eq 0 ]
-  [[ "$output" != *"WARN"* ]]
+  [[ "$output" != *"WARN"* ]] || false
 }
 
 @test "every links.txt entry exists under home/" {

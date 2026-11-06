@@ -49,12 +49,12 @@ load_common() { source "$REPO_ROOT/lib/common.sh"; }
   load_common
   skip docker-desktop "needs admin"
   run print_skips
-  [[ "$output" == *"docker-desktop"*"needs admin"* ]]
+  [[ "$output" == *"docker-desktop"*"needs admin"* ]] || false
 }
 
 @test "backup_dir is stable within a run" {
   load_common
   a=$(backup_dir); b=$(backup_dir)
   [ "$a" = "$b" ]
-  [[ "$a" == "$HOME/.dotfiles-backup/"* ]]
+  [[ "$a" == "$HOME/.dotfiles-backup/"* ]] || false
 }

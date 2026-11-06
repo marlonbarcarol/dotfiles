@@ -1,0 +1,5 @@
+# Sample Brewfile for tests
+# Entries marked [needs-admin] are skipped without admin rights.
+brew "ripgrep"  # Search | fast search through code
+cask "iterm2"  # Terminal | iTerm2 terminal
+cask "docker-desktop"  # Containers [needs-admin] | Docker Desktop
