@@ -1,0 +1,132 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+	// Remove default/extension keybinds
+	{
+		"key": "cmd+b",
+		"command": "-workbench.action.toggleSidebarVisibility"
+	},
+	{
+		"key": "cmd+1",
+		"command": "-workbench.action.focusFirstEditorGroup"
+	},
+	{
+		"key": "cmd+3",
+		"command": "-workbench.action.toggleSidebarVisibility",
+		"when": "searchViewletVisible"
+	},
+	{
+		"key": "cmd+3",
+		"command": "-workbench.view.search",
+		"when": "!searchViewletVisible"
+	},
+	{
+		"key": "cmd+1",
+		"command": "-workbench.action.toggleSidebarVisibility",
+		"when": "!editorFocus"
+	},
+	{
+		"key": "cmd+1",
+		"command": "-workbench.view.explorer",
+		"when": "editorFocus"
+	},
+	{
+		"key": "cmd+5",
+		"command": "-workbench.action.toggleSidebarVisibility",
+		"when": "!editorFocus"
+	},
+	{
+		"key": "cmd+9",
+		"command": "-workbench.action.toggleSidebarVisibility",
+		"when": "!editorFocus"
+	},
+	{
+		"key": "cmd+numpad9",
+		"command": "-workbench.action.toggleSidebarVisibility",
+		"when": "!editorFocus"
+	},
+	{
+		"key": "cmd+numpad3",
+		"command": "-workbench.action.toggleSidebarVisibility",
+		"when": "searchViewletVisible"
+	},
+	{
+		"key": "cmd+numpad9",
+		"command": "-workbench.view.scm",
+		"when": "editorFocus"
+	},
+	{
+		"key": "cmd+3",
+		"command": "-workbench.action.focusThirdEditorGroup"
+	},
+	{
+		"key": "cmd+k cmd+3",
+		"command": "-editor.foldLevel3",
+		"when": "editorTextFocus && foldingEnabled"
+	},
+	{
+		"key": "cmd+k",
+		"command": "-editor.foldLevel3",
+		"when": "editorTextFocus && foldingEnabled"
+	},
+	{
+		"key": "cmd+e",
+		"command": "-workbench.action.openRecent"
+	},
+	{
+		"key": "cmd+e",
+		"command": "-actions.findWithSelection"
+	},
+	{
+		"key": "cmd+e",
+		"command": "-workbench.action.quickOpenNavigateNext",
+		"when": "inQuickOpen"
+	},
+
+	// Adding custom keybindings
+	{
+		"key": "cmd+1",
+		"command": "workbench.files.action.focusFilesExplorer",
+	},
+	{
+		"key": "cmd+1",
+		"command": "workbench.action.toggleSidebarVisibility",
+		"when": "explorerViewletVisible"
+	},
+	{
+		"key": "cmd+2",
+		"command": "workbench.view.search.focus"
+	},
+	{
+		"key": "cmd+2",
+		"command": "workbench.action.toggleSidebarVisibility",
+		"when": "searchViewletVisible"
+	},
+	{
+		"key": "cmd+3",
+		"command": "workbench.view.scm",
+	},
+	{
+		"key": "cmd+3",
+		"command": "workbench.action.toggleSidebarVisibility",
+		"when": "activeViewlet == 'workbench.view.scm'"
+	},
+	{
+		"key": "cmd+e",
+		"command": "workbench.action.quickOpen"
+	},
+	{
+			"key": "ctrl+shift+u",
+			"command": "editor.action.transformToUppercase",
+			"when": "editorTextFocus"
+	},
+	{
+			"key": "ctrl+shift+l",
+			"command": "editor.action.transformToLowercase",
+			"when": "editorTextFocus"
+	},
+	{
+		"key": "cmd+n",
+		"command": "-editor.action.sourceAction",
+		"when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+	}
+]

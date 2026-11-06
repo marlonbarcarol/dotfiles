@@ -1,0 +1,168 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "editor.fontSize": 15,
+  "editor.minimap.enabled": false,
+  "git.enableSmartCommit": true,
+  "editor.tabSize": 2,
+  "explorer.confirmDelete": false,
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "editor.renderWhitespace": "none",
+  "editor.insertSpaces": false,
+  "editor.wordWrapColumn": 120,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "workbench.startupEditor": "none",
+  "workbench.tree.indent": 12,
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.view.alwaysShowHeaderActions": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "window.autoDetectHighContrast": false,
+  "explorer.openEditors.visible": 5,
+  "git.autofetch": true,
+  "git.autoStash": true,
+  "workbench.colorTheme": "Darcula Theme from IntelliJ",
+  "markdown.preview.doubleClickToSwitchToEditor": false,
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrainsMono NF', 'JetBrains Mono', Menlo, monospace",
+  "editor.fontLigatures": false,
+  "editor.fontWeight": "400",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.gotoLocation.multipleDefinitions": "gotoAndPeek",
+  "editor.gotoLocation.multipleDeclarations": "gotoAndPeek",
+  "editor.gotoLocation.multipleImplementations": "gotoAndPeek",
+  "editor.gotoLocation.multipleReferences": "gotoAndPeek",
+  "editor.gotoLocation.multipleTypeDefinitions": "gotoAndPeek",
+  "workbench.editor.limit.enabled": true,
+  "debug.javascript.autoAttachFilter": "smart",
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.blame.heatmap.location": "left",
+  "gitlens.sortBranchesBy": "date:asc",
+  "gitlens.hovers.currentLine.changes": false,
+  "gitlens.hovers.currentLine.details": false,
+  "gitlens.menus": {
+    "editorGroup": false,
+    "editorTab": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true
+    },
+    "explorer": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true
+    },
+    "scm": {
+      "authors": true
+    },
+    "scmGroupInline": {
+      "stash": true
+    },
+    "scmGroup": {
+      "compare": true,
+      "openClose": true,
+      "stash": true
+    },
+    "scmItem": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": false,
+      "stash": true
+    }
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "javascript.preferences.useAliasesForRenames": false,
+  "typescript.preferences.useAliasesForRenames": false,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.git": false,
+    "**/.git_TEMP": true,
+    "**/.project": true,
+    "**/.settings": true
+  },
+  "js/ts.implicitProjectConfig.checkJs": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "window.newWindowDimensions": "offset",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "html.format.indentInnerHtml": true,
+  "emmet.triggerExpansionOnTab": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "gitlens.views.scm.grouped.views": {
+    "commits": true,
+    "branches": true,
+    "remotes": true,
+    "stashes": true,
+    "tags": true,
+    "worktrees": true,
+    "contributors": true,
+    "fileHistory": false,
+    "repositories": true,
+    "searchAndCompare": false,
+    "launchpad": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[java]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+  "[scala]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[terraform]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-11",
+      "path": "~/.sdkman/candidates/java/11.0.18-amzn"
+    },
+    {
+      "name": "JavaSE-17",
+      "path": "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home"
+    },
+    {
+      "name": "JavaSE-21",
+      "path": "~/.sdkman/candidates/java/21.0.7-jbr"
+    },
+    {
+      "name": "JavaSE-25",
+      "path": "~/.sdkman/candidates/java/25.0.4+1.1-librca",
+      "default": true
+    }
+  ],
+  "metals.javaHome": "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home",
+  "redhat.telemetry.enabled": false,
+  "sonarlint.disableTelemetry": true,
+  "files.watcherExclude": {
+    "**/.bloop/**": true,
+    "**/.metals/**/*.{java,scala}": true
+  },
+  "claudeCode.hideOnboarding": true
+}
