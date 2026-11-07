@@ -9,16 +9,6 @@
   "hooks": {
     "Notification": [
       {
-        "matcher": "permission_prompt|idle_prompt|elicitation_dialog",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "afplay -v 0.05 /System/Library/Sounds/Hero.aiff 2>/dev/null || true",
-            "async": true
-          }
-        ]
-      },
-      {
         "hooks": [
           {
             "type": "command",
@@ -78,15 +68,6 @@
       }
     ],
     "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "afplay -v 0.05 /System/Library/Sounds/Blow.aiff 2>/dev/null || true",
-            "async": true
-          }
-        ]
-      },
       {
         "hooks": [
           {
@@ -152,7 +133,8 @@
     "jdtls-lsp@claude-plugins-official": true,
     "coderabbit@anthropic-plugin-directory": true,
     "image-view@claude-image-view": true,
-    "savvy-progress@claude-kit": true
+    "savvy-progress@claude-kit": true,
+    "marlon-agentic@marlonbarcarol": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -171,6 +153,12 @@
       "source": {
         "source": "github",
         "repo": "johnnyvizz/claude-kit"
+      }
+    },
+    "marlonbarcarol": {
+      "source": {
+        "source": "github",
+        "repo": "marlonbarcarol/dotfiles"
       }
     }
   },

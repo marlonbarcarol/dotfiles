@@ -1,0 +1,14 @@
+{
+  "name": "marlon-agentic",
+  "version": "0.2.0",
+  "description": "Marlon's general engineering skills (state machine audits and more) and soft macOS sounds when Claude waits for you or finishes.",
+  "author": {
+    "name": "Marlon Barcarol",
+    "url": "https://github.com/marlonbarcarol"
+  },
+  "repository": "https://github.com/marlonbarcarol/dotfiles",
+  "license": "MIT",
+  "skills": [
+    "./skills/state-machine-audit"
+  ]
+}

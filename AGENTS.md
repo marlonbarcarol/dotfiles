@@ -56,3 +56,6 @@ while the repo has no `CLAUDE.md`, so add new rules here.
   saying why.
 - For tool reviews or version bumps, use the repo skills `tool-scout` and
   `dependency-updater` in `.claude/skills/`.
+- `plugins/marlon-agentic/` holds general skills and hooks used in every
+  project (not this repo's own), installed by `./dotfiles agentic` from GitHub.
+  Adding a skill: see `docs/claude-code.md`, then `bats tests/plugins.bats`.

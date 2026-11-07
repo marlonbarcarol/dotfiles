@@ -29,9 +29,10 @@ Every module can run on its own, is safe to re-run, and supports `--help` and
 | `./dotfiles macos [group…]` | Mac settings: `dock`, `hot-corners`, `keyboard`, `trackpad`, `finder`, `system` | No |
 | `./dotfiles iterm [--themes]` | iTerm2 profiles (Main, Hotkey Window, theme previews) and window restoration | No |
 | `./dotfiles editors` | VS Code extensions, Neovim plugins | No |
+| `./dotfiles agentic` | my own plugin (skills, sound hooks) in Claude Code and Codex: installs it, or updates it to what's on GitHub | No |
 | `./dotfiles update [part…]` | upgrades everything, or `brew` / `mise` / `omz` / `nvim` / `tldr` | No |
 | `./dotfiles doctor` | checks what's set up and what's missing: changes nothing | No |
-| `./dotfiles all` | `install`, `link`, `iterm`, `editors`, then `doctor`. Add `--with-macos` to include `macos`, `--user`/`--admin` to pick the install mode | n/a |
+| `./dotfiles all` | `install`, `link`, `iterm`, `editors`, `agentic`, then `doctor`. Add `--with-macos` to include `macos`, `--user`/`--admin` to pick the install mode | n/a |
 
 Details, and how to undo each one:
 [install](docs/install.md) ·
@@ -39,6 +40,7 @@ Details, and how to undo each one:
 [macos](docs/macos.md) ·
 [iterm](docs/iterm.md) ·
 [editors](docs/editors.md) ·
+[agentic](docs/agentic.md) ·
 [update](docs/update.md) ·
 [doctor](docs/doctor.md) ·
 [Claude Code & Codex](docs/claude-code.md)
@@ -159,6 +161,37 @@ you run Claude Code here:
   changelogs, asks before major upgrades, runs the tests and `doctor`, and
   reports old → new. Ask: *"update the repo's dependencies"*. (`./dotfiles
   update` is different: it upgrades this Mac.)
+
+## My skills, for any project
+
+This repo is also a plugin marketplace. Its `marlon-agentic` plugin
+([`plugins/marlon-agentic/`](plugins/marlon-agentic)) holds general skills that work
+in any project:
+
+| Skill | What for |
+|---|---|
+| `marlon-agentic:state-machine-audit` | finds an app's explicit and implicit state machines, documents them, proves which invalid states are reachable (retries, races, duplicate webhooks), then fixes them test-first |
+
+It also plays two soft macOS sounds in Claude Code: "Hero" when Claude is
+waiting for you and "Blow" when it finishes a reply (5% volume, silent where
+`afplay` is missing).
+
+Install it in Claude Code:
+
+```
+/plugin marketplace add marlonbarcarol/dotfiles
+/plugin install marlon-agentic@marlonbarcarol
+```
+
+Or in Codex:
+
+```bash
+codex plugin marketplace add marlonbarcarol/dotfiles
+codex plugin add marlon-agentic@marlonbarcarol
+```
+
+On my own Mac, `./dotfiles agentic` does both, and running it again updates
+them ([details](docs/agentic.md)).
 
 ## Safety
 

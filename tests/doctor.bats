@@ -80,3 +80,12 @@ setup() {
   PATH="$BATS_TEST_TMPDIR/sdk/bin:$PATH" run "$REPO/dotfiles" doctor
   [[ "$output" == *"warn PATH java"* ]] || false
 }
+
+@test "doctor warns when this repo's plugin isn't installed in Claude Code" {
+  run "$REPO/dotfiles" doctor
+  [[ "$output" == *"warn agentic: marlon-agentic@marlonbarcarol isn't installed in Claude Code: run ./dotfiles agentic"* ]] || false
+  mkdir -p "$HOME/.claude/plugins"
+  echo '{"plugins":{"marlon-agentic@marlonbarcarol":[{}]}}' > "$HOME/.claude/plugins/installed_plugins.json"
+  run "$REPO/dotfiles" doctor
+  [[ "$output" == *"ok agentic: marlon-agentic@marlonbarcarol"* ]] || false
+}

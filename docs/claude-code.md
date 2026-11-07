@@ -5,9 +5,10 @@ own:
 
 | Module | Does |
 |---|---|
-| `./dotfiles install` | installs Claude Code (official native installer, only if `claude` is missing, no admin rights, updates itself), adds the plugin marketplaces, installs every enabled plugin that's missing |
+| `./dotfiles install` | installs Claude Code (official native installer, only if `claude` is missing, no admin rights, updates itself), adds the plugin marketplaces, installs every enabled plugin that's missing (except this repo's own: that's `agentic`) |
 | `./dotfiles link` | links `~/.claude/CLAUDE.md` and `~/.claude/statusline-command.sh`, **generates** `~/.claude/settings.json`, adds missing skills |
-| `./dotfiles doctor` | warns when the live settings drift from the repo |
+| `./dotfiles agentic` | installs or updates this repo's own plugin, marlon-agentic, in Claude Code and Codex ([details](agentic.md)) |
+| `./dotfiles doctor` | warns when the live settings drift from the repo, or marlon-agentic isn't installed |
 
 ## What's tracked, and what never is
 
@@ -39,17 +40,17 @@ then run `./dotfiles link`.
 
 | Hook | When | What you notice |
 |---|---|---|
-| Notification → `afplay … Hero.aiff` (5% volume) | Claude is **waiting for you**: needs a permission, idle, or asking a question | a soft "Hero" chime |
-| Stop → `afplay … Blow.aiff` (5% volume) | Claude **finished** its reply | a soft "Blow" sound |
+| Notification → `afplay … Hero.aiff` (5% volume), from the [marlon-agentic plugin](#your-own-plugin-marlon-agentic) | Claude is **waiting for you**: needs a permission, idle, or asking a question | a soft "Hero" chime |
+| Stop → `afplay … Blow.aiff` (5% volume), from the marlon-agentic plugin | Claude **finished** its reply | a soft "Blow" sound |
 | every event → `$HOME/.config/iterm2/cc-status` | all the time | silent: updates the Claude status shown on the iTerm tab (working / waiting). The script is iTerm's own (installed by its Claude Code integration). |
 
 ## Plugins
 
 Enabled (from `home/.claude/settings.json`): claude-code-setup,
 claude-md-management, code-review, code-simplifier, coderabbit, codex,
-commit-commands, github, hookify, image-view, jdtls-lsp, mattpocock-skills,
-playwright, remember, savvy-progress, security-guidance, superpowers,
-typescript-lsp. (context7 is intentionally not included.)
+commit-commands, github, hookify, image-view, jdtls-lsp, marlon-agentic,
+mattpocock-skills, playwright, remember, savvy-progress, security-guidance,
+superpowers, typescript-lsp. (context7 is intentionally not included.)
 
 Marketplaces: Anthropic's official ones, `openai/codex-plugin-cc`, and two
 **community-run** ones: `jarrodwatts/claude-image-view` (image-view) and
@@ -58,6 +59,42 @@ Mac with your permissions, so review updates to them.
 
 The two LSP plugins need their language servers on your PATH: `jdtls` (Brewfile)
 and `typescript-language-server` + `typescript` (mise).
+
+### Your own plugin: marlon-agentic
+
+This repo is also a plugin marketplace called `marlonbarcarol`
+(`.claude-plugin/marketplace.json`). Its one plugin, `marlon-agentic`, lives
+in `plugins/marlon-agentic/` and holds your own general skills, for every project:
+
+| Skill | What for |
+|---|---|
+| `marlon-agentic:state-machine-audit` | finds an app's explicit and implicit state machines, documents them in `docs/state-machines.md`, proves which invalid states and transitions are reachable (retries, races, duplicate webhooks), then files issues and fixes them test-first |
+
+It also carries the two sound hooks in the table above
+(`plugins/marlon-agentic/hooks/hooks.json`), so they come with the plugin
+rather than living in `settings.json`. They only play in Claude Code, and stay
+silent on a machine without `afplay`. Turning the plugin off turns off the
+sounds and the skills together.
+
+`./dotfiles agentic` adds the marketplace and installs the plugin in both, or
+updates them ([details](agentic.md)). By hand:
+
+```bash
+claude plugin marketplace add marlonbarcarol/dotfiles
+claude plugin install marlon-agentic@marlonbarcarol
+codex plugin marketplace add marlonbarcarol/dotfiles
+codex plugin add marlon-agentic@marlonbarcarol
+```
+
+Both install from GitHub, so a change reaches them only after it's pushed to
+`main`, followed by `./dotfiles agentic` (which updates both). To try an
+edit before pushing, run
+`claude --plugin-dir plugins/marlon-agentic`.
+
+Add a skill: create `plugins/marlon-agentic/skills/<name>/SKILL.md` (with
+`name: <name>` and a `description: Use when …` line), list it in
+`plugins/marlon-agentic/.claude-plugin/plugin.json`, bump its `version`, and run
+`bats tests/plugins.bats`.
 
 ## Skills
 
@@ -93,5 +130,5 @@ Codex itself comes from mise (`npm:@openai/codex`). Its settings file is
 owned by the Codex app, which keeps rewriting it with machine-specific entries,
 so `codex/config.toml` here is a **reference copy** of your preferences (model
 reasoning effort, approval policy, sandbox mode, status line, the mattpocock
-skills marketplace). Copy what you want into `~/.codex/config.toml` on a new
+and marlonbarcarol marketplaces). Copy what you want into `~/.codex/config.toml` on a new
 Mac.

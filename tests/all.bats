@@ -5,7 +5,7 @@ setup() {
   export HOME="$BATS_TEST_TMPDIR/home"; mkdir -p "$HOME"
   export STUB_LOG="$BATS_TEST_TMPDIR/stub.log"; : > "$STUB_LOG"
   export DOTFILES_MODULES_DIR="$BATS_TEST_TMPDIR/modules"; mkdir -p "$DOTFILES_MODULES_DIR"
-  for m in install link macos iterm editors doctor; do
+  for m in install link macos iterm editors agentic doctor; do
     printf '%s_help() { :; }\n%s_main() { echo "%s $*" >> "$STUB_LOG"; echo "PATH=$PATH" >> "$STUB_LOG"; }\n' "$m" "$m" "$m" > "$DOTFILES_MODULES_DIR/$m.sh"
   done
   printf 'link_help() { :; }\nlink_main() { echo "link $*" >> "$STUB_LOG"; skip "thing" "because"; }\n' > "$DOTFILES_MODULES_DIR/link.sh"
@@ -46,4 +46,9 @@ setup() {
   grep -q '^iterm' "$STUB_LOG"
   grep -q '^doctor' "$STUB_LOG"
   [[ "$output" == *"Skipped:"*"x: y"* ]] || false
+}
+
+@test "all runs agentic after editors" {
+  run "$REPO_ROOT/dotfiles" all
+  [ "$(grep -oE '^(editors|agentic|doctor)' "$STUB_LOG" | tr '\n' ,)" = "editors,agentic,doctor," ]
 }
