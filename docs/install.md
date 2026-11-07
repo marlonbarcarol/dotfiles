@@ -49,7 +49,7 @@ Every Brewfile line has the same shape:
 
 ```ruby
 brew "ripgrep"          # Search | fast search through code (newer grep)
-cask "some-app"         # Apps [needs-admin] | an app whose installer needs admin rights
+cask "<app-name>"       # Apps [needs-admin] | an app whose installer needs admin rights
 ```
 
 - `brew` = command-line tool, `cask` = app or font.
