@@ -53,7 +53,5 @@ while the repo has no `CLAUDE.md`, so add new rules here.
 - British English in docs and messages. Docs are plain, second-person and
   written for someone who isn't a shell expert.
 - Conventional commits with a scope: `feat(iterm): …`, `fix: …`.
-- `docs/superpowers/` holds the original design and plan, kept as history;
-  the code and README are the current truth.
 - For tool reviews or version bumps, use the repo skills `tool-scout` and
   `dependency-updater` in `.claude/skills/`.

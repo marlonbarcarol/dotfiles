@@ -29,7 +29,8 @@ jobs:
           persist-credentials: false
 
       - name: Install test tools
-        run: brew install bats-core shellcheck gitleaks
+        # starship: a test validates the prompt config with the real binary
+        run: brew install bats-core shellcheck gitleaks starship
 
       - name: Lint (shellcheck)
         run: shellcheck dotfiles lib/*.sh modules/*.sh home/.claude/statusline-command.sh .githooks/pre-commit
