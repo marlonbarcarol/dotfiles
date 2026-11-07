@@ -6,10 +6,10 @@ Installs, in this order:
 2. Everything in the [`Brewfile`](../Brewfile): command-line tools, apps, fonts.
    Apps you installed by hand (dragged into `/Applications`) are **adopted** by
    Homebrew instead of reinstalled, so `brew upgrade` can update them later.
-   **Adopting quits the app if it's running** (e.g. 1Password, Chrome) — save
+   **Adopting quits the app if it's running** (e.g. VS Code, iTerm) — save
    your work first, then just reopen it. An app can't be adopted when its
-   version doesn't match what Homebrew expects (Obsidian, here); update the
-   app or skip it — it's listed at the end and left untouched.
+   version doesn't match what Homebrew expects; update the app or skip it —
+   it's listed at the end and left untouched.
 3. **oh-my-zsh** (if missing) plus its two community plugins,
    `zsh-autosuggestions` and `zsh-syntax-highlighting`.
 4. The language tools in [`home/.config/mise/config.toml`](../home/.config/mise/config.toml)
@@ -38,8 +38,8 @@ Force one with `--admin` or `--user`.
 | Apps (casks) | `/Applications` | `~/Applications` |
 | `[needs-admin]` entries | installed | skipped and listed — **ask IT** for these |
 
-Entries marked `[needs-admin]` today: Docker Desktop (installs a system
-helper), Microsoft Teams and Zoom (both use `.pkg` installers).
+No entry is marked `[needs-admin]` today. Mark one if its installer needs
+admin rights (a `.pkg` installer or a system helper).
 
 `~/.zshrc` finds Homebrew in either location, so nothing else changes.
 
@@ -49,7 +49,7 @@ Every Brewfile line has the same shape:
 
 ```ruby
 brew "ripgrep"          # Search | fast search through code (newer grep)
-cask "docker-desktop"   # Apps [needs-admin] | Docker Desktop: containers and Compose
+cask "some-app"         # Apps [needs-admin] | an app whose installer needs admin rights
 ```
 
 - `brew` = command-line tool, `cask` = app or font.

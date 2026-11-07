@@ -53,9 +53,8 @@ Details, and how to undo each one:
 
 - **With admin:** Homebrew in `/opt/homebrew`, apps in `/Applications`.
 - **Without admin:** Homebrew in `~/.local/homebrew`, apps in `~/Applications`.
-  Some packages compile on your Mac (slower). Entries marked `(admin)` in the
-  table below — Docker Desktop, Microsoft Teams, Zoom — are skipped and listed
-  at the end so you can ask IT.
+  Some packages compile on your Mac (slower). Any entry marked `(admin)` in the
+  table below is skipped and listed at the end so you can ask IT (none today).
 
 One failed item never stops the rest; everything skipped is listed at the end
 with the reason.
@@ -121,13 +120,7 @@ admin rights.
 | `iterm2` | Apps | iTerm2 terminal |
 | `visual-studio-code` | Apps | VS Code editor (settings via Settings Sync) |
 | `jetbrains-toolbox` | Apps | installs and updates IntelliJ and other JetBrains IDEs |
-| `docker-desktop` | Apps (admin) | Docker Desktop: containers and Compose |
-| `google-chrome` | Apps | Chrome browser |
-| `1password` | Apps | password manager |
-| `obsidian` | Apps | notes |
 | `claude` | Apps | Claude desktop app |
-| `microsoft-teams` | Apps (admin) | Microsoft Teams |
-| `zoom` | Apps (admin) | Zoom meetings |
 | `font-jetbrains-mono-nerd-font` | Fonts | JetBrains Mono with icons, used in iTerm, VS Code and the prompt |
 | `node` | Languages | Node.js runtime (replaces nvm) |
 | `java` | Languages | Java JDK, BellSoft Liberica (replaces SDKMAN) |

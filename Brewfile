@@ -56,13 +56,7 @@ brew "bats-core"                    # Quality | test runner for this repo's shel
 cask "iterm2"                       # Apps | iTerm2 terminal
 cask "visual-studio-code"           # Apps | VS Code editor (settings via Settings Sync)
 cask "jetbrains-toolbox"            # Apps | installs and updates IntelliJ and other JetBrains IDEs
-cask "docker-desktop"               # Apps [needs-admin] | Docker Desktop: containers and Compose
-cask "google-chrome"                # Apps | Chrome browser
-cask "1password"                    # Apps | password manager
-cask "obsidian"                     # Apps | notes
 cask "claude"                       # Apps | Claude desktop app
-cask "microsoft-teams"              # Apps [needs-admin] | Microsoft Teams
-cask "zoom"                         # Apps [needs-admin] | Zoom meetings
 
 # ---- Fonts ----
 cask "font-jetbrains-mono-nerd-font" # Fonts | JetBrains Mono with icons, used in iTerm, VS Code and the prompt
