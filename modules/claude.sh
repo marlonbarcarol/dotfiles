@@ -82,17 +82,19 @@ claude_install() {
   fi
   local known="$HOME/.claude/plugins/known_marketplaces.json"
   local installed="$HOME/.claude/plugins/installed_plugins.json"
-  local name repo id
+  local name repo id own
+  # This repo's own marketplace is installed and updated by ./dotfiles agentic.
+  own="$(jq -r .name "$DOTFILES_ROOT/.claude-plugin/marketplace.json" 2>/dev/null)"
   while IFS=$'\t' read -r name repo; do
     [ -n "$name" ] || continue
     if [ -f "$known" ] && jq -e --arg n "$name" 'has($n)' "$known" >/dev/null 2>&1; then continue; fi
     run_cmd claude plugin marketplace add "$repo" </dev/null \
       || skip "marketplace $name" "claude plugin marketplace add failed"
-  done < <(jq -r '.extraKnownMarketplaces // {} | to_entries[] | "\(.key)\t\(.value.source.repo)"' "$CLAUDE_REPO_SETTINGS")
+  done < <(jq -r --arg own "$own" '.extraKnownMarketplaces // {} | to_entries[] | select(.key != $own) | "\(.key)\t\(.value.source.repo)"' "$CLAUDE_REPO_SETTINGS")
   while IFS= read -r id; do
     [ -n "$id" ] || continue
     if [ -f "$installed" ] && jq -e --arg i "$id" '.plugins | has($i)' "$installed" >/dev/null 2>&1; then continue; fi
     run_cmd claude plugin install "$id" </dev/null \
       || skip "plugin $id" "claude plugin install failed"
-  done < <(jq -r '.enabledPlugins // {} | to_entries[] | select(.value == true) | .key' "$CLAUDE_REPO_SETTINGS")
+  done < <(jq -r --arg own "@$own" '.enabledPlugins // {} | to_entries[] | select(.value == true) | .key | select(endswith($own) | not)' "$CLAUDE_REPO_SETTINGS")
 }

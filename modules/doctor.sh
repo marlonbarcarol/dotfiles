@@ -6,6 +6,8 @@
 . "$DOTFILES_ROOT/modules/install.sh"     # for brewfile_for_mode
 # shellcheck source=/dev/null
 . "$DOTFILES_ROOT/lib/tools-table.sh"     # for readme_tools_up_to_date
+# shellcheck source=/dev/null
+. "$DOTFILES_ROOT/modules/agentic.sh"     # for agentic_marketplace / agentic_plugins
 
 doctor_help() {
   cat <<'EOF'
@@ -19,6 +21,7 @@ Checks, without changing anything:
   - PATH order (Homebrew curl first, Java from mise)
   - the README tools table matches the Brewfile and mise config
   - secret-scanning hook on, git identity set
+  - this repo's own plugins are installed in Claude Code
 
 Exit code 1 if any check fails. Docs (what each failure means): docs/doctor.md
 EOF
@@ -155,6 +158,20 @@ doctor_claude() {
   fi
 }
 
+doctor_agentic() {
+  command -v claude >/dev/null 2>&1 || return 0
+  local installed="$HOME/.claude/plugins/installed_plugins.json" mp p id
+  mp="$(agentic_marketplace)"
+  for p in $(agentic_plugins); do
+    id="$p@$mp"
+    if [ -f "$installed" ] && jq -e --arg i "$id" '.plugins | has($i)' "$installed" >/dev/null 2>&1; then
+      _ok "agentic" "$id installed in Claude Code"
+    else
+      _warn "agentic" "$id isn't installed in Claude Code: run ./dotfiles agentic"
+    fi
+  done
+}
+
 doctor_main() {
   [ $# -eq 0 ] || { warn "doctor takes no options"; return 2; }
   doctor_mode
@@ -166,5 +183,6 @@ doctor_main() {
   doctor_readme
   doctor_git
   doctor_claude
+  doctor_agentic
   [ "$_DOCTOR_FAILED" = 0 ]
 }

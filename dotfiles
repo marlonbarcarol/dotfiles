@@ -9,7 +9,7 @@ export DOTFILES_ROOT
 . "$DOTFILES_ROOT/lib/common.sh"
 
 DOTFILES_MODULES_DIR="${DOTFILES_MODULES_DIR:-$DOTFILES_ROOT/modules}"
-ALL_ORDER="install link iterm editors"   # macos only with --with-macos
+ALL_ORDER="install link iterm editors agentic"   # macos only with --with-macos
 
 # path_setup: make tools installed earlier in this run (or by a previous run)
 # visible to every module, even before a new shell picks up ~/.zshrc.
@@ -34,9 +34,10 @@ Modules:
   macos     Apply macOS settings (dock, hot-corners, keyboard, trackpad, finder, system)
   iterm     Install iTerm2 profiles and settings
   editors   VS Code extensions, Neovim plugins
+  agentic   Claude Code and Codex: install or update this repo's plugins (skills, sounds)
   update    Update everything, or one part: brew | mise | omz | nvim | tldr
   doctor    Check what's set up and what's missing (changes nothing)
-  all       install, link, iterm, editors, then doctor (fresh Mac)
+  all       install, link, iterm, editors, agentic, then doctor (fresh Mac)
             add --with-macos to also apply the macOS settings
             add --user / --admin to choose the install mode
 
@@ -80,7 +81,7 @@ main() {
       local m order="$ALL_ORDER" pass=() install_args=() rc=0 a
       for a in "$@"; do
         case "$a" in
-          --with-macos) order="install link macos iterm editors" ;;
+          --with-macos) order="install link macos iterm editors agentic" ;;
           --user)  export DOTFILES_MODE="user";  install_args+=("$a") ;;
           --admin) export DOTFILES_MODE="admin"; install_args+=("$a") ;;
           *) pass+=("$a") ;;

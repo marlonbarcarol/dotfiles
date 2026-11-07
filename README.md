@@ -29,9 +29,10 @@ Every module can run on its own, is safe to re-run, and supports `--help` and
 | `./dotfiles macos [group…]` | Mac settings: `dock`, `hot-corners`, `keyboard`, `trackpad`, `finder`, `system` | No |
 | `./dotfiles iterm [--themes]` | iTerm2 profiles (Main, Hotkey Window, theme previews) and window restoration | No |
 | `./dotfiles editors` | VS Code extensions, Neovim plugins | No |
+| `./dotfiles agentic` | my own plugin (skills, sound hooks) in Claude Code and Codex: installs it, or updates it to what's on GitHub | No |
 | `./dotfiles update [part…]` | upgrades everything, or `brew` / `mise` / `omz` / `nvim` / `tldr` | No |
 | `./dotfiles doctor` | checks what's set up and what's missing: changes nothing | No |
-| `./dotfiles all` | `install`, `link`, `iterm`, `editors`, then `doctor`. Add `--with-macos` to include `macos`, `--user`/`--admin` to pick the install mode | n/a |
+| `./dotfiles all` | `install`, `link`, `iterm`, `editors`, `agentic`, then `doctor`. Add `--with-macos` to include `macos`, `--user`/`--admin` to pick the install mode | n/a |
 
 Details, and how to undo each one:
 [install](docs/install.md) ·
@@ -39,6 +40,7 @@ Details, and how to undo each one:
 [macos](docs/macos.md) ·
 [iterm](docs/iterm.md) ·
 [editors](docs/editors.md) ·
+[agentic](docs/agentic.md) ·
 [update](docs/update.md) ·
 [doctor](docs/doctor.md) ·
 [Claude Code & Codex](docs/claude-code.md)
@@ -188,8 +190,8 @@ codex plugin marketplace add marlonbarcarol/dotfiles
 codex plugin add marlon-agentic@marlonbarcarol
 ```
 
-On my own Mac, `./dotfiles install` does the Claude Code part
-([details](docs/claude-code.md#your-own-plugin-marlon-agentic)).
+On my own Mac, `./dotfiles agentic` does both, and running it again updates
+them ([details](docs/agentic.md)).
 
 ## Safety
 

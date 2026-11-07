@@ -5,9 +5,10 @@ own:
 
 | Module | Does |
 |---|---|
-| `./dotfiles install` | installs Claude Code (official native installer, only if `claude` is missing, no admin rights, updates itself), adds the plugin marketplaces, installs every enabled plugin that's missing |
+| `./dotfiles install` | installs Claude Code (official native installer, only if `claude` is missing, no admin rights, updates itself), adds the plugin marketplaces, installs every enabled plugin that's missing (except this repo's own: that's `agentic`) |
 | `./dotfiles link` | links `~/.claude/CLAUDE.md` and `~/.claude/statusline-command.sh`, **generates** `~/.claude/settings.json`, adds missing skills |
-| `./dotfiles doctor` | warns when the live settings drift from the repo |
+| `./dotfiles agentic` | installs or updates this repo's own plugin, marlon-agentic, in Claude Code and Codex ([details](agentic.md)) |
+| `./dotfiles doctor` | warns when the live settings drift from the repo, or marlon-agentic isn't installed |
 
 ## What's tracked, and what never is
 
@@ -75,7 +76,8 @@ rather than living in `settings.json`. They only play in Claude Code, and stay
 silent on a machine without `afplay`. Turning the plugin off turns off the
 sounds and the skills together.
 
-`./dotfiles install` adds the marketplace and installs the plugin. By hand:
+`./dotfiles agentic` adds the marketplace and installs the plugin in both, or
+updates them ([details](agentic.md)). By hand:
 
 ```bash
 claude plugin marketplace add marlonbarcarol/dotfiles
@@ -85,8 +87,8 @@ codex plugin add marlon-agentic@marlonbarcarol
 ```
 
 Both install from GitHub, so a change reaches them only after it's pushed to
-`main`, followed by `claude plugin update marlon-agentic@marlonbarcarol` (Codex:
-`codex plugin marketplace upgrade`). To try an edit before pushing, run
+`main`, followed by `./dotfiles agentic` (which updates both). To try an
+edit before pushing, run
 `claude --plugin-dir plugins/marlon-agentic`.
 
 Add a skill: create `plugins/marlon-agentic/skills/<name>/SKILL.md` (with
