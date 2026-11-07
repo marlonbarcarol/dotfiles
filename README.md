@@ -9,14 +9,11 @@ rights.
 
 ```bash
 xcode-select --install                     # Apple's command-line tools (git, etc.)
-git clone https://github.com/<owner>/dotfiles ~/project/dotfiles
+git clone https://github.com/marlonbarcarol/dotfiles ~/project/dotfiles
 cd ~/project/dotfiles
 ./dotfiles all --dry-run                   # see everything it would do
 ./dotfiles all                             # do it (add --with-macos to apply Mac settings too)
 ```
-
-While the repo is private, sign in first so `git clone` works:
-`brew install gh && gh auth login` (or clone over SSH).
 
 Then do the [manual steps](#manual-steps) and open a new terminal tab.
 
@@ -165,7 +162,7 @@ you run Claude Code here:
 
 ## Safety
 
-This repo is meant to be public, so:
+This repo is public, so:
 
 - **Never tracked:** `~/.ssh`, `~/.aws`, `~/.kube`, `~/.npmrc`, `~/.docker`,
   `~/.claude.json`, Codex `auth.json`, iTerm's full settings file, and any
@@ -198,3 +195,8 @@ request, on a macOS runner.
 Scripts target macOS's built-in `/bin/bash` 3.2. In tests, end a `[[ … ]]` or
 `! cmd` check with `|| false` — bash 3.2 otherwise ignores a failure in the
 middle of a test.
+
+## Licence
+
+[MIT](LICENSE). `home/.config/nvim` starts from the LazyVim starter, which
+keeps its own [Apache 2.0 licence](home/.config/nvim/LICENSE).
