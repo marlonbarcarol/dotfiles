@@ -1,4 +1,4 @@
-# `./dotfiles doctor` — health check
+# `./dotfiles doctor`: health check
 
 Checks how this Mac compares with the repo. It **never changes anything**, so
 run it whenever you like.
@@ -19,7 +19,7 @@ by telling you whether the setup is complete.
 | `brew extras` | warn: things you installed yourself that aren't in the Brewfile (dependencies are ignored) | add them to the Brewfile, or `brew uninstall <name>` |
 | `mise` | fail: a tool in `~/.config/mise/config.toml` isn't installed | `mise install` |
 | `PATH curl` | warn: Homebrew's curl isn't ahead of `/usr/bin/curl` (the eMudhra CA fix isn't active) | open a new terminal tab |
-| `PATH java` | warn: `java` isn't coming from mise | open a new tab; `mise install` |
+| `PATH java` | warn: `java` isn't coming from mise | open a new tab, or run `mise install` |
 | `README tools table` | fail: the Brewfile or mise config changed without refreshing the README | `bash lib/tools-table.sh --write` |
 | `secret scanning` | warn: the gitleaks pre-commit hook is off for this repo | `./dotfiles link` |
 | `git identity` | warn: no email in `~/.gitconfig.local` | `./dotfiles link` (asks for it) |

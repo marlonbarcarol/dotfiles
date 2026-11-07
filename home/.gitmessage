@@ -1,9 +1,9 @@
-# <type>(<scope>): <what changed — imperative, lower case, no full stop>
+# <type>(<scope>): <what changed: imperative, lower case, no full stop>
 #
-# <why: the problem this solves or the reason for it; wrap at 72>
+# <why: the problem this solves or the reason for it, wrapped at 72>
 #
 # type:  feat fix docs ci test refactor chore
-# scope: the area changed — dotfiles install link macos iterm editors
+# scope: the area changed, one of dotfiles install link macos iterm editors
 #        update doctor claude brew shell git mise nvim nano readme agents
 #        actions
 # Subject: 72 characters at most. Lines starting with # are dropped.

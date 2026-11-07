@@ -1,4 +1,4 @@
-# Brewfile — everything Homebrew installs (run by `./dotfiles install`).
+# Brewfile: everything Homebrew installs (run by `./dotfiles install`).
 #
 # Line format:  <brew|cask> "<name>"  # <Category> [needs-admin] | <what it's for>
 #   - The comment is required: the README's "What gets installed" table is
@@ -45,7 +45,7 @@ brew "btop"                         # System | better Activity Monitor in the te
 
 # ---- Editors ----
 brew "neovim"                       # Editors | Neovim with LazyVim (`vim` is aliased to it)
-brew "nano"                         # Editors | GNU nano: needed for ~/.nanorc (syntax colours); macOS's /usr/bin/nano can't use it
+brew "nano"                         # Editors | GNU nano: needed for ~/.nanorc (syntax colours). macOS's /usr/bin/nano can't use it
 brew "tree-sitter-cli"              # Editors | tree-sitter command Neovim (LazyVim) uses to build syntax parsers
 
 # ---- Quality ----

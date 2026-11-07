@@ -11,7 +11,7 @@ _TT_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 TOOLS_START='<!-- tools:start -->'
 TOOLS_END='<!-- tools:end -->'
 
-# _tt_row <name> <comment>: one markdown row; fails if the comment is malformed.
+# _tt_row <name> <comment>: one markdown row. Fails if the comment is malformed.
 _tt_row() {
   local name="$1" comment="$2" category desc
   if [[ "$comment" != *"|"* ]]; then

@@ -34,7 +34,7 @@ doctor_gitconfig() {
      && git config -f "$HOME/.gitconfig" --get-all include.path 2>/dev/null | grep -qx "$DOTFILES_ROOT/home/.gitconfig"; then
     _ok "gitconfig" "includes the repo settings"
   else
-    _fail "gitconfig" "your .gitconfig doesn't include the repo settings — run ./dotfiles link"
+    _fail "gitconfig" "your .gitconfig doesn't include the repo settings: run ./dotfiles link"
   fi
 }
 
@@ -45,7 +45,7 @@ doctor_mode() {
   if command -v "$brew" >/dev/null 2>&1; then
     _ok mode "$mode, Homebrew at $(brew_prefix)"
   else
-    _fail mode "$mode, but no Homebrew at $(brew_prefix) — run ./dotfiles install"
+    _fail mode "$mode, but no Homebrew at $(brew_prefix): run ./dotfiles install"
   fi
 }
 
@@ -58,7 +58,7 @@ doctor_links() {
     if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$src" ]; then
       _ok "link $rel" "linked"
     else
-      _fail "link $rel" "not linked to this repo — run ./dotfiles link"
+      _fail "link $rel" "not linked to this repo: run ./dotfiles link"
     fi
   done < "${DOTFILES_LINKS:-$DOTFILES_ROOT/links.txt}"
 }
@@ -73,7 +73,7 @@ doctor_brew() {
   if "$brew" bundle check --file="$filtered" >/dev/null 2>&1 </dev/null; then
     _ok "brew bundle" "everything in the Brewfile is installed"
   else
-    _fail "brew bundle" "some Brewfile entries are missing — run ./dotfiles install"
+    _fail "brew bundle" "some Brewfile entries are missing: run ./dotfiles install"
   fi
   # Extras = what you installed on purpose (leaves + casks) that the Brewfile lacks.
   # (`brew bundle cleanup` would also list dependencies, which is noise.)
@@ -93,13 +93,13 @@ doctor_brew() {
 }
 
 doctor_mise() {
-  command -v mise >/dev/null 2>&1 || { _fail mise "not installed — run ./dotfiles install"; return; }
+  command -v mise >/dev/null 2>&1 || { _fail mise "not installed: run ./dotfiles install"; return; }
   local missing
   # Check the repo's config: before `link`, mise's live global config may not exist.
   missing="$(MISE_GLOBAL_CONFIG_FILE="$DOTFILES_ROOT/home/.config/mise/config.toml" \
     mise ls --missing 2>/dev/null </dev/null | awk '{print $1}' | tr '\n' ' ' | sed 's/ $//' || true)"
   if [ -n "$missing" ]; then
-    _fail mise "missing: $missing — run mise install"
+    _fail mise "missing $missing (run mise install)"
   else
     _ok mise "all tools installed"
   fi
@@ -112,12 +112,12 @@ doctor_path() {
   if [ -n "$curl_dir" ]; then
     case ":$PATH:" in
       *":$curl_dir:"*":/usr/bin:"*) _ok "PATH curl" "Homebrew curl comes before /usr/bin" ;;
-      *) _warn "PATH curl" "Homebrew curl isn't ahead of /usr/bin (eMudhra fix) — open a new shell" ;;
+      *) _warn "PATH curl" "Homebrew curl isn't ahead of /usr/bin (eMudhra fix): open a new shell" ;;
     esac
   fi
   java="$(command -v java || true)"
   if [ -z "$java" ] || [[ "$java" != */mise/* ]]; then
-    _warn "PATH java" "java isn't coming from mise — open a new shell, or run mise install"
+    _warn "PATH java" "java isn't coming from mise: open a new shell, or run mise install"
   else
     _ok "PATH java" "$java"
   fi
@@ -127,7 +127,7 @@ doctor_readme() {
   if readme_tools_up_to_date "$DOTFILES_ROOT/README.md" 2>/dev/null; then
     _ok "README tools table" "up to date"
   else
-    _fail "README tools table" "out of date — run bash lib/tools-table.sh --write"
+    _fail "README tools table" "out of date: run bash lib/tools-table.sh --write"
   fi
 }
 
@@ -136,13 +136,13 @@ doctor_git() {
     if [ "$(git -C "$DOTFILES_ROOT" config core.hooksPath || true)" = ".githooks" ]; then
       _ok "secret scanning" "pre-commit hook on"
     else
-      _warn "secret scanning" "pre-commit hook off — run ./dotfiles link"
+      _warn "secret scanning" "pre-commit hook off: run ./dotfiles link"
     fi
   fi
   if git config -f "$HOME/.gitconfig.local" user.email >/dev/null 2>&1; then
     _ok "git identity" "$(git config -f "$HOME/.gitconfig.local" user.email)"
   else
-    _warn "git identity" "no email in ~/.gitconfig.local — run ./dotfiles link"
+    _warn "git identity" "no email in ~/.gitconfig.local: run ./dotfiles link"
   fi
 }
 
@@ -151,7 +151,7 @@ doctor_claude() {
   if claude_settings_drift; then
     _ok "claude settings" "matches repo + private settings"
   else
-    _warn "claude settings" "the live settings.json differs from the repo (changed via /config or /plugin?) — copy the change into home/.claude/settings.json, then ./dotfiles link"
+    _warn "claude settings" "the live settings.json differs from the repo (changed via /config or /plugin?): copy the change into home/.claude/settings.json, then ./dotfiles link"
   fi
 }
 

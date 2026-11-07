@@ -22,7 +22,7 @@ owner picks what to apply.
 | `home/.claude/settings.json`, `claude/skills.txt` | Claude plugins, marketplaces, skills |
 | `vscode/extensions.txt`, `modules/macos.sh` | VS Code extensions, macOS settings |
 
-## Part 1 — Is each tool still right?
+## Part 1: Is each tool still right?
 
 For every tool, check with web search (cite each source):
 - **Maintenance:** last release, archived/"life support" notices (e.g. powerlevel10k), deprecation in favour of a fork (e.g. exa → eza).
@@ -41,22 +41,22 @@ zsh -i -c 'alias' | grep -E "='?git "     # e.g. gst='git status'
 
 `LC_ALL=C` is required for every command in the pipe: the history file has non-UTF-8 bytes, so `awk` silently misses lines and `sort` fails with "Illegal byte sequence". Count the tool **and its aliases** (`gst` is oh-my-zsh's git plugin). Counts only see the first word of each line (not `cd x && tool`, pipes or `sudo tool`), so a low count is a lower bound: say "rarely used", and also check scripts and configs (`grep -rn <tool> ~/project`) before calling it unused.
 
-## Part 2 — What on this Mac isn't in the repo?
+## Part 2: What on this Mac isn't in the repo?
 
 | Look at | Command | Compare with |
 |---|---|---|
 | Homebrew installs | `brew leaves --installed-on-request`, `brew list --cask` | `Brewfile` |
 | Hand-installed apps | `ls /Applications`, then `brew search --cask <name>` | `Brewfile` casks |
-| App Store apps | `mas list` | usually personal — ignore unless a work tool |
+| App Store apps | `mas list` | usually personal: ignore unless a work tool |
 | Global tools | `mise ls`, `npm -g ls --depth 0`, `ls ~/.local/bin` | mise config |
 | Config files | `ls -A ~ ~/.config` | `links.txt` |
 | Claude | `jq .enabledPlugins ~/.claude/settings.json`, `ls ~/.claude/skills` | `home/.claude/settings.json`, `claude/skills.txt` |
 | VS Code | `code --list-extensions` | `vscode/extensions.txt` |
 | macOS | `defaults read <domain> <key>` for keys you suspect | `modules/macos.sh` |
 
-`./dotfiles doctor` already lists Homebrew extras — start there.
+`./dotfiles doctor` already lists Homebrew extras: start there.
 
-Classify every finding: **add** (work/coding tool), **ignore — personal** (media, games, music: the repo is coding-focused), or **ignore — stale** (unused per history, old runtime versions). Never read secrets (`~/.ssh`, `~/.aws`, `~/.npmrc`, `.env`, `auth.json`).
+Classify every finding: **add** (work/coding tool), **ignore (personal)** (media, games, music: the repo is coding-focused), or **ignore (stale)** (unused per history, old runtime versions). Never read secrets (`~/.ssh`, `~/.aws`, `~/.npmrc`, `.env`, `auth.json`).
 
 ## Report
 
@@ -71,7 +71,7 @@ Then: "Not verified" (anything you couldn't check). Then ask which rows to apply
 
 - Add a tool: Brewfile/mise line with the `# Category | what it's for` comment, then `bash lib/tools-table.sh --write`.
 - Replace: update configs and docs that mention the old tool (`grep -rn <old>`).
-- Then `bats tests/` and `./dotfiles doctor`. Never uninstall from the Mac yourself — tell the owner the command.
+- Then `bats tests/` and `./dotfiles doctor`. Never uninstall from the Mac yourself. Tell the owner the command.
 
 ## Common mistakes
 

@@ -5,7 +5,7 @@ own:
 
 | Module | Does |
 |---|---|
-| `./dotfiles install` | installs Claude Code (official native installer, only if `claude` is missing — no admin rights, updates itself), adds the plugin marketplaces, installs every enabled plugin that's missing |
+| `./dotfiles install` | installs Claude Code (official native installer, only if `claude` is missing, no admin rights, updates itself), adds the plugin marketplaces, installs every enabled plugin that's missing |
 | `./dotfiles link` | links `~/.claude/CLAUDE.md` and `~/.claude/statusline-command.sh`, **generates** `~/.claude/settings.json`, adds missing skills |
 | `./dotfiles doctor` | warns when the live settings drift from the repo |
 
@@ -13,16 +13,16 @@ own:
 
 | Tracked in the repo | Never tracked |
 |---|---|
-| `home/.claude/settings.json` — permissions mode, hooks, status line, plugins, marketplaces | `~/.claude.json` (account, sign-in, project history) |
-| `home/.claude/statusline-command.sh` — your status line script | `~/.claude/settings.private.json` (see below) |
-| `home/.claude/CLAUDE.md` — global instructions (two lines) | `history.jsonl`, `projects/`, `sessions/`, caches, `plugins/` state |
-| `claude/skills.txt` — skills to install | `~/.agents/` (the Skills CLI's install folder and lock file) |
-| `codex/config.toml` — Codex preferences (reference copy) | `~/.codex/auth.json`, `~/.codex/rules/`, Codex sessions/sqlite |
+| `home/.claude/settings.json`: permissions mode, hooks, status line, plugins, marketplaces | `~/.claude.json` (account, sign-in, project history) |
+| `home/.claude/statusline-command.sh`: your status line script | `~/.claude/settings.private.json` (see below) |
+| `home/.claude/CLAUDE.md`: global instructions (a few short lines) | `history.jsonl`, `projects/`, `sessions/`, caches, `plugins/` state |
+| `claude/skills.txt`: skills to install | `~/.agents/` (the Skills CLI's install folder and lock file) |
+| `codex/config.toml`: Codex preferences (reference copy) | `~/.codex/auth.json`, `~/.codex/rules/`, Codex sessions/sqlite |
 
 ### The generated settings file
 
-Claude Code reads only `~/.claude/settings.json`, but part of yours is private
-— the auto-mode note naming your home server (user and IP address). So:
+Claude Code reads only `~/.claude/settings.json`, but part of yours is private:
+the auto-mode note naming your home server (user and IP address). So:
 
 - `home/.claude/settings.json` (public) has everything else.
 - `~/.claude/settings.private.json` (untracked, on your Mac only) has the
@@ -52,9 +52,9 @@ playwright, remember, savvy-progress, security-guidance, superpowers,
 typescript-lsp. (context7 is intentionally not included.)
 
 Marketplaces: Anthropic's official ones, `openai/codex-plugin-cc`, and two
-**community-run** ones — `jarrodwatts/claude-image-view` (image-view) and
+**community-run** ones: `jarrodwatts/claude-image-view` (image-view) and
 `johnnyvizz/claude-kit` (savvy-progress). Community plugins run code on your
-Mac with your permissions; review updates to them.
+Mac with your permissions, so review updates to them.
 
 The two LSP plugins need their language servers on your PATH: `jdtls` (Brewfile)
 and `typescript-language-server` + `typescript` (mise).
@@ -80,12 +80,12 @@ echo "<name> https://github.com/<owner>/<repo>" >> claude/skills.txt
 
 ### `/security-review` or the security-audit skill?
 
-- **`/security-review`** (built in) — reviews your current changes. Quick and
+- **`/security-review`** (built in): reviews your current changes. Quick and
   cheap: use it before a PR.
-- **security-audit skill** — a full audit in phases (reconnaissance, many
+- **security-audit skill**: a full audit in phases (reconnaissance, many
   hunting agents, independent verifiers, a report). Slow and uses a lot of
-  tokens. Use it deliberately — "security audit this codebase" — for a real
-  audit; otherwise it only gives guidance.
+  tokens. Use it deliberately ("security audit this codebase") for a real
+  audit. Otherwise it only gives guidance.
 
 ## Codex
 

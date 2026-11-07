@@ -1,4 +1,4 @@
-# `./dotfiles link` — config files
+# `./dotfiles link`: config files
 
 Links the config files in this repo's `home/` folder into your home folder, so
 editing either one edits both, and `git diff` shows every change you make.
@@ -21,7 +21,7 @@ both `home/` and `~`.
 | `.ideavimrc` | Vim keys inside IntelliJ (needs the IdeaVim plugin) |
 | `.nanorc` | nano: syntax colours |
 | `.gitmessage` | Commit message template: `git commit` (without `-m`) opens with the format |
-| `.config/starship.toml` | The prompt: path, git status, ❯ on the left; duration, versions, clock on the right |
+| `.config/starship.toml` | The prompt: path, git status, ❯ on the left, duration, versions, clock on the right |
 | `.config/git/ignore` | Files git ignores in every repo |
 | `.config/mise/config.toml` | Global language versions and tools (Node, Java, Gradle, Codex, …) |
 | `.config/nvim` | Neovim / LazyVim configuration (whole folder) |
@@ -32,13 +32,13 @@ both `home/` and `~`.
 
 `~/.gitconfig` is a small **local** file that `[include]`s
 `home/.gitconfig` from the repo (pull with rebase, delta diffs, …). It isn't
-a link because `git config --global …` — and tools such as `gh auth
-setup-git` — write to `~/.gitconfig`; as a link, that would put your details
+a link because `git config --global …` (and tools such as `gh auth
+setup-git`) write to `~/.gitconfig`. As a link, that would put your details
 into the public repo. Your name and email live in `~/.gitconfig.local`.
-(`git config --global <key>` only shows included values with `--includes`;
+(`git config --global <key>` only shows included values with `--includes`,
 git itself always uses them.)
 
-`~/.claude/settings.json` is generated, not linked — see
+`~/.claude/settings.json` is generated, not linked. See
 [claude-code.md](claude-code.md).
 
 ## When something is already there
@@ -89,4 +89,4 @@ it finds a secret.
 
 1. Copy the file into `home/` at the same relative path (e.g. `home/.config/foo/config.toml`).
 2. Add that path to `links.txt`.
-3. Run `./dotfiles link` — your original is backed up and replaced by the link.
+3. Run `./dotfiles link`. Your original is backed up and replaced by the link.

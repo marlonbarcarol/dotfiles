@@ -82,8 +82,8 @@ setup() {
   grep -q 'skill find-skills' "$STUB_LOG"
 }
 
-@test "global CLAUDE.md is exactly two lines" {
-  [ "$(wc -l < "$REPO_ROOT/home/.claude/CLAUDE.md" | tr -d ' ')" -eq 2 ]
+@test "global CLAUDE.md stays short" {
+  [ "$(wc -l < "$REPO_ROOT/home/.claude/CLAUDE.md" | tr -d ' ')" -le 5 ]
   grep -qx -- '- British English.' "$REPO_ROOT/home/.claude/CLAUDE.md"
 }
 

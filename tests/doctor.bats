@@ -27,7 +27,7 @@ setup() {
 }
 
 @test "doctor warns on brew extras" {
-  # leaves = what you installed on purpose; ripgrep is in the Brewfile, cmatrix isn't
+  # leaves = what you installed on purpose. ripgrep is in the Brewfile, cmatrix isn't
   export STUB_BREW_LEAVES_OUT=$'cmatrix\nripgrep'
   run "$REPO/dotfiles" doctor
   [[ "$output" == *"warn brew extras: cmatrix (installed"* ]] || false

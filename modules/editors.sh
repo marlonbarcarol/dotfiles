@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 # editors: VS Code extensions and Neovim plugins. Editor *settings* are synced
-# by each editor's own Settings Sync; this repo keeps reference copies only.
+# by each editor's own Settings Sync. This repo keeps reference copies only.
 
 editors_help() {
   cat <<'EOF'
@@ -38,7 +38,7 @@ editors_neovim() {
   fi
   # restore = install exactly the versions in lazy-lock.json (sync would update them)
   run_cmd nvim --headless "+Lazy! restore" +qa </dev/null \
-    || skip "Neovim plugins" "Lazy sync failed; open nvim and run :Lazy"
+    || skip "Neovim plugins" "Lazy sync failed: open nvim and run :Lazy"
 }
 
 editors_main() {

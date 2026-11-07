@@ -1,7 +1,7 @@
-# `./dotfiles macos` — Mac settings
+# `./dotfiles macos`: Mac settings
 
 Applies your macOS preferences with `defaults write`. Each group can run on
-its own; nothing here needs admin rights.
+its own. Nothing here needs admin rights.
 
 ```bash
 ./dotfiles macos --dry-run          # list every setting it would write
@@ -65,10 +65,10 @@ log out.
 
 ## Not automated
 
-- **Display scaling** — the 4K external monitor is set to "looks like
+- **Display scaling**: the 4K external monitor is set to "looks like
   1920 × 1080" at 144 Hz in System Settings → Displays. Per-display scaling
   can't be set reliably from a script, so set it by hand.
-- **Changing a setting here** — edit the `dw` line in `modules/macos.sh`
+- **Changing a setting here**: edit the `dw` line in `modules/macos.sh`
   (domain, key, type, value, and the System Settings label), then update this
   table. To find a setting's key: `defaults read > before.txt`, change it in
   System Settings, `defaults read > after.txt`, `diff before.txt after.txt`.

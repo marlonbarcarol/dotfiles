@@ -1,6 +1,6 @@
 load helpers
 
-# Fake modules: each logs its name; doctor fails and one module records a skip.
+# Fake modules: each logs its name, doctor fails and one module records a skip.
 setup() {
   export HOME="$BATS_TEST_TMPDIR/home"; mkdir -p "$HOME"
   export STUB_LOG="$BATS_TEST_TMPDIR/stub.log"; : > "$STUB_LOG"

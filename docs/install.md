@@ -1,4 +1,4 @@
-# `./dotfiles install` — tools and apps
+# `./dotfiles install`: tools and apps
 
 Installs, in this order:
 
@@ -6,9 +6,9 @@ Installs, in this order:
 2. Everything in the [`Brewfile`](../Brewfile): command-line tools, apps, fonts.
    Apps you installed by hand (dragged into `/Applications`) are **adopted** by
    Homebrew instead of reinstalled, so `brew upgrade` can update them later.
-   **Adopting quits the app if it's running** (e.g. VS Code, iTerm) — save
+   **Adopting quits the app if it's running** (e.g. VS Code, iTerm), so save
    your work first, then just reopen it. An app can't be adopted when its
-   version doesn't match what Homebrew expects; update the app or skip it —
+   version doesn't match what Homebrew expects. Update the app or skip it:
    it's listed at the end and left untouched.
 3. **oh-my-zsh** (if missing) plus its two community plugins,
    `zsh-autosuggestions` and `zsh-syntax-highlighting`.
@@ -34,9 +34,9 @@ Force one with `--admin` or `--user`.
 |---|---|---|
 | Homebrew location | `/opt/homebrew` (standard) | `~/.local/homebrew` |
 | Homebrew install | official installer, asks for your password once | `git clone`, no password |
-| Packages | prebuilt ("bottles"), fast | some get compiled on your Mac — slower, and occasionally fails |
+| Packages | prebuilt ("bottles"), fast | some get compiled on your Mac: slower, and occasionally fails |
 | Apps (casks) | `/Applications` | `~/Applications` |
-| `[needs-admin]` entries | installed | skipped and listed — **ask IT** for these |
+| `[needs-admin]` entries | installed | skipped and listed, so **ask IT** for these |
 
 No entry is marked `[needs-admin]` today. Mark one if its installer needs
 admin rights (a `.pkg` installer or a system helper).
@@ -65,7 +65,7 @@ bash lib/tools-table.sh --write     # refreshes the README table
 ```
 
 Removing a line doesn't uninstall anything. `./dotfiles doctor` lists
-installed packages that aren't in the Brewfile; remove them with
+installed packages that aren't in the Brewfile. Remove them with
 `brew uninstall <name>`.
 
 Language tools go in `home/.config/mise/config.toml` instead, with the same
@@ -86,8 +86,8 @@ java@liberica-21`, or just `cd` into the project.
 
 ## Per-project versions and tasks (mise)
 
-A `mise.toml` in a project pins that project's versions — they switch
-automatically when you `cd` in — and can define tasks, like a Makefile:
+A `mise.toml` in a project pins that project's versions (they switch
+automatically when you `cd` in) and can define tasks, like a Makefile:
 
 ```toml
 [tools]
@@ -106,6 +106,6 @@ mise use java@21  # pin a version in the current project (writes mise.toml)
 ## AWS
 
 The AWS CLI comes from Homebrew (`awscli`), so it also works without admin
-rights. Sign in with `aws login` or SSO — never store access keys. Your default
+rights. Sign in with `aws login` or SSO. Never store access keys. Your default
 region is `us-east-1` (`aws configure set region us-east-1`).
 Nothing from `~/.aws` is in this repo: it holds your login sessions.

@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# update: upgrade everything on this Mac, or one part. Never runs on its own —
+# update: upgrade everything on this Mac, or one part. Never runs on its own:
 # you decide when, so nothing changes under you in the middle of work.
 
 UPDATE_PARTS="brew mise omz nvim tldr"
@@ -32,7 +32,7 @@ update_brew() {
   run_cmd "$brew" update && run_cmd "$brew" upgrade && run_cmd "$brew" cleanup
 }
 
-# mise comes from Homebrew, so `brew upgrade` updates mise itself; this updates its tools.
+# mise comes from Homebrew, so `brew upgrade` updates mise itself. This updates its tools.
 update_mise() { run_cmd mise upgrade; }
 
 update_omz() {
@@ -69,7 +69,7 @@ update_main() {
       skip "$p" "not installed"
       continue
     fi
-    "update_$p" </dev/null || skip "$p" "update failed; run ./dotfiles update $p to see why"
+    "update_$p" </dev/null || skip "$p" "update failed: run ./dotfiles update $p to see why"
   done
   print_skips
 }

@@ -1,4 +1,4 @@
-# ~/.gitconfig — shared git settings (linked from the dotfiles repo).
+# ~/.gitconfig: shared git settings (linked from the dotfiles repo).
 # Your name and email live in ~/.gitconfig.local (created by `./dotfiles link`,
 # never committed), so this file is safe to publish.
 

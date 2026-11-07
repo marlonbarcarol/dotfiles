@@ -1,4 +1,4 @@
-# Codex preferences — REFERENCE COPY, not linked.
+# Codex preferences: REFERENCE COPY, not linked.
 # The Codex app owns ~/.codex/config.toml and rewrites it with machine-specific
 # entries (app paths, computer-use helpers, per-project trust, MCP servers), so
 # this repo only records the choices worth carrying to a new Mac. Copy the

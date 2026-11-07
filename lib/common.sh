@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# Shared helpers for every module. Sourced by ./dotfiles; never run directly.
+# Shared helpers for every module. Sourced by ./dotfiles, never run directly.
 # Compatible with macOS /bin/bash 3.2.
 
 : "${DOTFILES_ROOT:=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
@@ -23,7 +23,7 @@ run_cmd() {
   "$@"
 }
 
-# is_admin: DOTFILES_MODE=admin|user forces the answer; otherwise ask macOS.
+# is_admin: DOTFILES_MODE=admin|user forces the answer, otherwise ask macOS.
 is_admin() {
   case "${DOTFILES_MODE:-}" in
     admin) return 0 ;;

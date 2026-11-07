@@ -1,4 +1,4 @@
-" ~/.ideavimrc — vim keys inside IntelliJ (needs the IdeaVim plugin).
+" ~/.ideavimrc: vim keys inside IntelliJ (needs the IdeaVim plugin).
 " Docs: https://github.com/JetBrains/ideavim
 
 set relativenumber                       " line numbers relative to the cursor (5j, 3k)

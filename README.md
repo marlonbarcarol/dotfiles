@@ -1,7 +1,7 @@
 # dotfiles
 
-My macOS setup for coding work — shell, tools, apps, editor and terminal
-configuration, and Mac settings — in one repo, so a new Mac is ready with one
+My macOS setup for coding work (shell, tools, apps, editor and terminal
+configuration, and Mac settings) in one repo, so a new Mac is ready with one
 command and every change is tracked. Apple Silicon Macs, with or without admin
 rights.
 
@@ -24,14 +24,14 @@ Every module can run on its own, is safe to re-run, and supports `--help` and
 
 | Command | What it does | Admin needed? |
 |---|---|---|
-| `./dotfiles install` | Homebrew + [Brewfile](Brewfile), mise language tools, oh-my-zsh + plugins, Claude Code + plugins | Optional — see below |
+| `./dotfiles install` | Homebrew + [Brewfile](Brewfile), mise language tools, oh-my-zsh + plugins, Claude Code + plugins | Optional: see below |
 | `./dotfiles link` | links config files into `~` (backs up what it replaces), asks for your git name/email, generates Claude Code settings, adds skills | No |
 | `./dotfiles macos [group…]` | Mac settings: `dock`, `hot-corners`, `keyboard`, `trackpad`, `finder`, `system` | No |
 | `./dotfiles iterm [--themes]` | iTerm2 profiles (Main, Hotkey Window, theme previews) and window restoration | No |
 | `./dotfiles editors` | VS Code extensions, Neovim plugins | No |
 | `./dotfiles update [part…]` | upgrades everything, or `brew` / `mise` / `omz` / `nvim` / `tldr` | No |
-| `./dotfiles doctor` | checks what's set up and what's missing — changes nothing | No |
-| `./dotfiles all` | `install`, `link`, `iterm`, `editors`, then `doctor`; add `--with-macos` to include `macos`, `--user`/`--admin` to pick the install mode | — |
+| `./dotfiles doctor` | checks what's set up and what's missing: changes nothing | No |
+| `./dotfiles all` | `install`, `link`, `iterm`, `editors`, then `doctor`. Add `--with-macos` to include `macos`, `--user`/`--admin` to pick the install mode | n/a |
 
 Details, and how to undo each one:
 [install](docs/install.md) ·
@@ -53,7 +53,7 @@ Details, and how to undo each one:
   Some packages compile on your Mac (slower). Any entry marked `(admin)` in the
   table below is skipped and listed at the end so you can ask IT (none today).
 
-One failed item never stops the rest; everything skipped is listed at the end
+One failed item never stops the rest. Everything skipped is listed at the end
 with the reason.
 
 ## Manual steps
@@ -65,7 +65,7 @@ Things a script can't (or shouldn't) do:
    hotkey window. Run `./dotfiles iterm` once from Terminal.app with iTerm
    closed so it reopens your tabs after quitting. ([details](docs/iterm.md))
 2. **Settings Sync:** sign in to **VS Code** Settings Sync and **JetBrains**
-   Settings Sync — they bring back editor settings, keymaps and extensions.
+   Settings Sync: they bring back editor settings, keymaps and extensions.
 3. **IntelliJ:** install the **IdeaVim** plugin (its config, `~/.ideavimrc`, is
    already linked).
 4. **Display:** System Settings → Displays → external 4K monitor → "looks like
@@ -77,7 +77,7 @@ Things a script can't (or shouldn't) do:
 ## What gets installed
 
 Generated from the comments in the [`Brewfile`](Brewfile) and
-[`home/.config/mise/config.toml`](home/.config/mise/config.toml) — refresh with
+[`home/.config/mise/config.toml`](home/.config/mise/config.toml): refresh with
 `bash lib/tools-table.sh --write`. "(admin)" means it's skipped on Macs without
 admin rights.
 
@@ -110,7 +110,7 @@ admin rights.
 | `xh` | Networking | quick HTTP requests from the terminal (like REST Client) |
 | `btop` | System | better Activity Monitor in the terminal |
 | `neovim` | Editors | Neovim with LazyVim (`vim` is aliased to it) |
-| `nano` | Editors | GNU nano: needed for ~/.nanorc (syntax colours); macOS's /usr/bin/nano can't use it |
+| `nano` | Editors | GNU nano: needed for ~/.nanorc (syntax colours). macOS's /usr/bin/nano can't use it |
 | `tree-sitter-cli` | Editors | tree-sitter command Neovim (LazyVim) uses to build syntax parsers |
 | `shellcheck` | Quality | catches mistakes in shell scripts |
 | `bats-core` | Quality | test runner for this repo's shell scripts |
@@ -123,7 +123,7 @@ admin rights.
 | `java` | Languages | Java JDK, BellSoft Liberica (replaces SDKMAN) |
 | `gradle` | Languages | Gradle build tool for Java/Kotlin |
 | `scala` | Languages | Scala compiler and REPL |
-| `pipx:ansible` | Python tools | Ansible automation (ansible-core commands; Python 3.13 until it supports 3.15) |
+| `pipx:ansible` | Python tools | Ansible automation (ansible-core commands, Python 3.13 until it supports 3.15) |
 | `pipx:poetry` | Python tools | Poetry dependency/packaging manager |
 | `npm:@openai/codex` | AI | OpenAI Codex CLI |
 | `npm:typescript-language-server` | Code intelligence | TypeScript LSP for Claude Code's typescript-lsp plugin |
@@ -136,10 +136,10 @@ admin rights.
 |---|---|
 | add a CLI tool or app | add a line to the `Brewfile` (`brew "name"  # Category \| what it's for`), run `./dotfiles install`, then `bash lib/tools-table.sh --write` |
 | add a language tool | add it to `home/.config/mise/config.toml` (same comment format), `mise install`, refresh the table |
-| pin versions for one project | `mise use java@21` in the project — writes its own `mise.toml` ([example](docs/install.md#per-project-versions-and-tasks-mise)) |
+| pin versions for one project | `mise use java@21` in the project: writes its own `mise.toml` ([example](docs/install.md#per-project-versions-and-tasks-mise)) |
 | change a Mac setting | edit its `dw` line in `modules/macos.sh`, run `./dotfiles macos <group>` ([how to find a key](docs/macos.md#not-automated)) |
 | track a new config file | copy it into `home/` at the same path, add the path to `links.txt`, run `./dotfiles link` |
-| update everything | `./dotfiles update` (when you choose — nothing updates by itself) |
+| update everything | `./dotfiles update` (when you choose: nothing updates by itself) |
 | see what's missing or drifted | `./dotfiles doctor` |
 | undo a link run | `./dotfiles link --restore <run-id>` (`ls ~/.dotfiles-backup`) |
 
@@ -148,13 +148,13 @@ admin rights.
 This repo ships two Claude Code skills in `.claude/skills/`, available when
 you run Claude Code here:
 
-- **`tool-scout`** — reviews every tool the repo installs: is it abandoned,
+- **`tool-scout`** reviews every tool the repo installs: is it abandoned,
   deprecated, or has security news? Is there a better-established
   alternative? It checks your shell history before suggesting a removal, scans
   this Mac for tools, apps, configs and settings the repo doesn't capture yet,
   and gives a keep / replace / add / remove table with sources. Ask: *"scout my
   tools"* or *"is there anything I should add to my dotfiles?"*
-- **`dependency-updater`** — keeps the versions the **repo** records current
+- **`dependency-updater`** keeps the versions the **repo** records current
   (mise pins, Neovim's `lazy-lock.json`, skills, Claude plugins), reads
   changelogs, asks before major upgrades, runs the tests and `doctor`, and
   reports old → new. Ask: *"update the repo's dependencies"*. (`./dotfiles
@@ -193,7 +193,7 @@ a gitleaks scan of the whole history on every push to `main` and every pull
 request, on a macOS runner.
 
 Scripts target macOS's built-in `/bin/bash` 3.2. In tests, end a `[[ … ]]` or
-`! cmd` check with `|| false` — bash 3.2 otherwise ignores a failure in the
+`! cmd` check with `|| false`, because bash 3.2 otherwise ignores a failure in the
 middle of a test.
 
 ## Licence

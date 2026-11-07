@@ -81,7 +81,7 @@ install_homebrew() {
 
 install_ohmyzsh() {
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    # KEEP_ZSHRC: our .zshrc comes from `./dotfiles link`; RUNZSH/CHSH: don't switch shells mid-install
+    # KEEP_ZSHRC: our .zshrc comes from `./dotfiles link`. RUNZSH/CHSH: don't switch shells mid-install
     run_cmd /bin/sh -c 'curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | env RUNZSH=no KEEP_ZSHRC=yes CHSH=no sh -s -- --unattended' \
       || skip "oh-my-zsh" "installer failed"
   fi
@@ -101,7 +101,7 @@ install_mise_tools() {
   fi
   # Use the repo's config directly: `link` (which links it into ~) may not have run yet.
   run_cmd env MISE_GLOBAL_CONFIG_FILE="$DOTFILES_ROOT/home/.config/mise/config.toml" mise install \
-    || skip "mise tools" "mise install failed; run it again to see why"
+    || skip "mise tools" "mise install failed: run it again to see why"
   # Node (npx) etc. for the rest of this run
   export PATH="$HOME/.local/share/mise/shims:$PATH"
 }
@@ -137,7 +137,7 @@ install_main() {
 
   adopt_existing_casks "$filtered"
   run_cmd "$BREW" bundle --file="$filtered" \
-    || skip "brew bundle" "some entries failed; see the output above"
+    || skip "brew bundle" "some entries failed: see the output above"
   rm -f "$filtered"
 
   install_ohmyzsh

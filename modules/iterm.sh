@@ -14,7 +14,7 @@ folder (iTerm picks them up while running):
 
 Also makes iTerm reopen your windows and tabs after you quit it. iTerm
 overwrites its own settings when it quits, so that part only runs when iTerm
-isn't running — run it once from Terminal.app.
+isn't running: run it once from Terminal.app.
 Docs (manual steps, shortcuts): docs/iterm.md
 EOF
 }
@@ -42,7 +42,7 @@ iterm_copy() {
   echo "installed $name"
 }
 
-# iterm_running: `pgrep` can't see GUI apps from some shells; `ps` can.
+# iterm_running: `pgrep` can't see GUI apps from some shells, but `ps` can.
 iterm_running() {
   # shellcheck disable=SC2009  # pgrep is exactly what misses iTerm here
   # grep must read everything: with -q it exits early, ps dies of SIGPIPE and
@@ -52,10 +52,10 @@ iterm_running() {
 
 iterm_globals() {
   if iterm_running; then
-    skip "iTerm global settings" "iTerm is running and would overwrite them — quit iTerm and run ./dotfiles iterm from Terminal.app"
+    skip "iTerm global settings" "iTerm is running and would overwrite them: quit iTerm and run ./dotfiles iterm from Terminal.app"
     return 0
   fi
-  # Reopen windows/tabs after quitting (iTerm only; other apps keep the macOS setting)
+  # Reopen windows/tabs after quitting (iTerm only: other apps keep the macOS setting)
   run_cmd defaults write com.googlecode.iterm2 NSQuitAlwaysKeepsWindows -bool true \
     || skip "iTerm NSQuitAlwaysKeepsWindows" "defaults write failed"
   run_cmd defaults write com.googlecode.iterm2 OpenNoWindowsAtStartup -bool false \

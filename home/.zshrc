@@ -1,13 +1,13 @@
-# ~/.zshrc — interactive zsh setup (linked from the dotfiles repo).
+# ~/.zshrc: interactive zsh setup (linked from the dotfiles repo).
 #
 # Sections, in order:
-#   1. Homebrew   — find Homebrew (standard prefix with admin, ~/.local/homebrew without)
-#   2. oh-my-zsh  — framework + plugins (git aliases like gst, fzf, zoxide, ...)
-#   3. PATH       — curl fix, user bin, mise (Node, Java, Gradle, Python tools)
-#   4. Editor     — Neovim everywhere
+#   1. Homebrew: find Homebrew (standard prefix with admin, ~/.local/homebrew without)
+#   2. oh-my-zsh: framework + plugins (git aliases like gst, fzf, zoxide, ...)
+#   3. PATH: curl fix, user bin, mise (Node, Java, Gradle, Python tools)
+#   4. Editor: Neovim everywhere
 #   5. Aliases
-#   6. Prompt     — Starship (config: ~/.config/starship.toml)
-#   7. Local      — ~/.zshrc.local for machine-specific or private settings
+#   6. Prompt: Starship (config: ~/.config/starship.toml)
+#   7. Local: ~/.zshrc.local for machine-specific or private settings
 #
 # There is deliberately no ~/.zprofile: macOS reorders PATH between .zprofile
 # and .zshrc, so everything PATH-related lives here.

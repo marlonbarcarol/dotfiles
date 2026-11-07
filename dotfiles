@@ -90,10 +90,10 @@ main() {
         log "module: $m"
         if [ "$m" = install ]; then
           ( run_module "$m" ${pass[@]+"${pass[@]}"} ${install_args[@]+"${install_args[@]}"} ) \
-            || { warn "module $m failed; continuing with the rest"; rc=1; }
+            || { warn "module $m failed, continuing with the rest"; rc=1; }
         else
           ( run_module "$m" ${pass[@]+"${pass[@]}"} ) \
-            || { warn "module $m failed; continuing with the rest"; rc=1; }
+            || { warn "module $m failed, continuing with the rest"; rc=1; }
         fi
       done
       log "module: doctor"

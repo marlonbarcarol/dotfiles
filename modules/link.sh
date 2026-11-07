@@ -23,7 +23,7 @@ EOF
 # shellcheck source=/dev/null
 . "$DOTFILES_ROOT/modules/claude.sh"
 
-# link_one <relpath>: link $HOME/<relpath> to the repo copy; prints the state.
+# link_one <relpath>: link $HOME/<relpath> to the repo copy and print the state.
 link_one() {
   local rel="$1"
   local src="$DOTFILES_ROOT/home/$rel"
@@ -50,7 +50,7 @@ link_one() {
 
 # gitconfig_stub: the exact contents of ~/.gitconfig. It's a real local file
 # (not a link) so `git config --global ...` writes here, never into the
-# public repo; shared settings come in through the include.
+# public repo. Shared settings come in through the include.
 gitconfig_stub() {
   printf '# Local git config (not tracked). Shared settings come from the dotfiles repo;\n'
   # shellcheck disable=SC2016  # backticks are literal text in the file
@@ -103,7 +103,7 @@ ensure_git_identity() {
       return 0
     fi
     if [ ! -t 0 ]; then
-      skip "git identity" "no terminal to ask; set DOTFILES_GIT_NAME and DOTFILES_GIT_EMAIL or re-run ./dotfiles link"
+      skip "git identity" "no terminal to ask: set DOTFILES_GIT_NAME and DOTFILES_GIT_EMAIL or re-run ./dotfiles link"
       return 0
     fi
     local answer

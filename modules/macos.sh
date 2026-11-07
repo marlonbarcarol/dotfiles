@@ -20,7 +20,7 @@ EOF
 }
 
 # dw [-currentHost] <domain> <key> <type> <value> <label>
-# Writes one setting; a failure is recorded as skipped, never fatal.
+# Writes one setting. A failure is recorded as skipped, never fatal.
 dw() {
   local host=()
   if [ "$1" = "-currentHost" ]; then host=(-currentHost); shift; fi

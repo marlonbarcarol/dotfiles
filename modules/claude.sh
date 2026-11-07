@@ -41,7 +41,7 @@ claude_settings_merge() {
   tmp="$(mktemp)"
   if ! _claude_merged > "$tmp" 2>/dev/null; then
     rm -f "$tmp"
-    skip "claude settings" "couldn't merge — is ~/.claude/settings.private.json valid JSON? (jq . ~/.claude/settings.private.json)"
+    skip "claude settings" "couldn't merge: is ~/.claude/settings.private.json valid JSON? (jq . ~/.claude/settings.private.json)"
     return 0
   fi
   if [ -e "$CLAUDE_LIVE_SETTINGS" ] || [ -L "$CLAUDE_LIVE_SETTINGS" ]; then
@@ -64,7 +64,7 @@ claude_skills_install() {
     case "$name" in \#*) continue ;; esac
     [ -e "$HOME/.claude/skills/$name" ] && continue
     if ! command -v npx >/dev/null 2>&1; then
-      skip "skill $name" "npx (Node) isn't available yet — run ./dotfiles install, then ./dotfiles link"
+      skip "skill $name" "npx (Node) isn't available yet: run ./dotfiles install, then ./dotfiles link"
       continue
     fi
     run_cmd npx skills add "$url" --skill "$name" --global -y </dev/null \
