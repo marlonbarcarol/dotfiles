@@ -1,0 +1,44 @@
+# CI: the same checks as "Development" in the README, on macOS (the scripts
+# target macOS's /bin/bash 3.2 and BSD tools, so Linux wouldn't prove much).
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: macos-15
+    timeout-minutes: 15
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # gitleaks scans the whole history
+          persist-credentials: false
+
+      - name: Install test tools
+        run: brew install bats-core shellcheck gitleaks
+
+      - name: Lint (shellcheck)
+        run: shellcheck dotfiles lib/*.sh modules/*.sh home/.claude/statusline-command.sh .githooks/pre-commit
+
+      - name: Tests (bats, sandboxed $HOME, stubbed system commands)
+        run: bats tests/
+
+      - name: README tools table matches the Brewfile and mise config
+        run: bash lib/tools-table.sh --check
+
+      - name: Secret scan (whole history)
+        run: gitleaks git . --no-banner --redact

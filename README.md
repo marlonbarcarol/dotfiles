@@ -188,7 +188,12 @@ This repo is meant to be public, so:
 bats tests/                                        # all tests (sandboxed $HOME, stubbed system commands)
 shellcheck dotfiles lib/*.sh modules/*.sh          # lint
 gitleaks dir . --no-banner                         # secrets scan
+bash lib/tools-table.sh --check                    # README table matches the Brewfile
 ```
+
+[CI](.github/workflows/ci.yml) runs the tests, shellcheck, the table check and
+a gitleaks scan of the whole history on every push to `main` and every pull
+request, on a macOS runner.
 
 Scripts target macOS's built-in `/bin/bash` 3.2. In tests, end a `[[ … ]]` or
 `! cmd` check with `|| false` — bash 3.2 otherwise ignores a failure in the

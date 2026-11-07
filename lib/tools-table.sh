@@ -4,6 +4,7 @@
 #
 #   bash lib/tools-table.sh           print the table
 #   bash lib/tools-table.sh --write   refresh README.md between the tools markers
+#   bash lib/tools-table.sh --check   exit 1 if README.md is out of date (CI)
 #   source lib/tools-table.sh         use tools_table / readme_tools_up_to_date
 
 _TT_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
@@ -80,7 +81,10 @@ if [ "${BASH_SOURCE[0]}" = "$0" ]; then
   set -euo pipefail
   case "${1:-}" in
     --write) _tt_write "${DOTFILES_README:-$_TT_ROOT/README.md}" ;;
+    --check)
+      readme_tools_up_to_date "${DOTFILES_README:-$_TT_ROOT/README.md}" \
+        || { echo "README tools table is out of date: run bash lib/tools-table.sh --write" >&2; exit 1; } ;;
     "") _tt_current ;;
-    *) echo "usage: bash lib/tools-table.sh [--write]" >&2; exit 2 ;;
+    *) echo "usage: bash lib/tools-table.sh [--write|--check]" >&2; exit 2 ;;
   esac
 fi

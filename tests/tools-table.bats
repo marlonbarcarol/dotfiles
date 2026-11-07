@@ -48,3 +48,12 @@ rows() { grep -c '^| `' <<< "$1"; }
   grep -q '^after$' "$BATS_TEST_TMPDIR/README.md"
   ! grep -q '^old$' "$BATS_TEST_TMPDIR/README.md" || false
 }
+
+@test "--check passes on the repo's README and fails on a stale one" {
+  run bash "$REPO_ROOT/lib/tools-table.sh" --check
+  [ "$status" -eq 0 ]
+  sed 's/| `fzf` | Shell |/| `fzf` | Stale |/' "$REPO_ROOT/README.md" > "$BATS_TEST_TMPDIR/README.md"
+  DOTFILES_README="$BATS_TEST_TMPDIR/README.md" run bash "$REPO_ROOT/lib/tools-table.sh" --check
+  [ "$status" -eq 1 ]
+  [[ "$output" == *"out of date"* ]] || false
+}
