@@ -1,0 +1,4 @@
+# ~/.nanorc — nano settings (linked from the dotfiles repo).
+# Syntax colours for every language Homebrew's nano ships with.
+# (No-admin Macs: Homebrew lives in ~/.local/homebrew — change the path there.)
+include "/opt/homebrew/share/nano/*.nanorc"
