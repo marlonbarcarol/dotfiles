@@ -1,0 +1,28 @@
+{
+  "description": "Soft macOS sounds: Hero when Claude is waiting for you, Blow when it finishes. Silent where afplay is missing.",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt|idle_prompt|elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay -v 0.05 /System/Library/Sounds/Hero.aiff 2>/dev/null || true",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay -v 0.05 /System/Library/Sounds/Blow.aiff 2>/dev/null || true",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

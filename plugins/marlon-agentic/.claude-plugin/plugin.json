@@ -1,7 +1,7 @@
 {
   "name": "marlon-agentic",
-  "version": "0.1.0",
-  "description": "General engineering skills for Claude Code and Codex: state machine audits and more.",
+  "version": "0.2.0",
+  "description": "Marlon's general engineering skills (state machine audits and more) and soft macOS sounds when Claude waits for you or finishes.",
   "author": {
     "name": "Marlon Barcarol",
     "url": "https://github.com/marlonbarcarol"

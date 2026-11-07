@@ -39,8 +39,8 @@ then run `./dotfiles link`.
 
 | Hook | When | What you notice |
 |---|---|---|
-| Notification → `afplay … Hero.aiff` (5% volume) | Claude is **waiting for you**: needs a permission, idle, or asking a question | a soft "Hero" chime |
-| Stop → `afplay … Blow.aiff` (5% volume) | Claude **finished** its reply | a soft "Blow" sound |
+| Notification → `afplay … Hero.aiff` (5% volume), from the [marlon-agentic plugin](#your-own-plugin-marlon-agentic) | Claude is **waiting for you**: needs a permission, idle, or asking a question | a soft "Hero" chime |
+| Stop → `afplay … Blow.aiff` (5% volume), from the marlon-agentic plugin | Claude **finished** its reply | a soft "Blow" sound |
 | every event → `$HOME/.config/iterm2/cc-status` | all the time | silent: updates the Claude status shown on the iTerm tab (working / waiting). The script is iTerm's own (installed by its Claude Code integration). |
 
 ## Plugins
@@ -68,6 +68,12 @@ in `plugins/marlon-agentic/` and holds your own general skills, for every projec
 | Skill | What for |
 |---|---|
 | `marlon-agentic:state-machine-audit` | finds an app's explicit and implicit state machines, documents them in `docs/state-machines.md`, proves which invalid states and transitions are reachable (retries, races, duplicate webhooks), then files issues and fixes them test-first |
+
+It also carries the two sound hooks in the table above
+(`plugins/marlon-agentic/hooks/hooks.json`), so they come with the plugin
+rather than living in `settings.json`. They only play in Claude Code, and stay
+silent on a machine without `afplay`. Turning the plugin off turns off the
+sounds and the skills together.
 
 `./dotfiles install` adds the marketplace and installs the plugin. By hand:
 

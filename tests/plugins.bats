@@ -41,6 +41,13 @@ MARKETPLACE="$REPO_ROOT/.claude-plugin/marketplace.json"
   done
 }
 
+@test "sound hooks come from the marlon-agentic plugin only, so they never play twice" {
+  local hooks="$REPO_ROOT/plugins/marlon-agentic/hooks/hooks.json"
+  jq -e '[.hooks.Notification[].hooks[].command, .hooks.Stop[].hooks[].command]
+         | map(select(test("afplay"))) | length == 2' "$hooks" >/dev/null
+  ! grep -q afplay "$REPO_ROOT/home/.claude/settings.json" || false
+}
+
 @test "Claude settings and the Codex reference config enable this marketplace" {
   local mp
   mp="$(jq -r .name "$MARKETPLACE")"

@@ -170,6 +170,10 @@ in any project:
 |---|---|
 | `marlon-agentic:state-machine-audit` | finds an app's explicit and implicit state machines, documents them, proves which invalid states are reachable (retries, races, duplicate webhooks), then fixes them test-first |
 
+It also plays two soft macOS sounds in Claude Code: "Hero" when Claude is
+waiting for you and "Blow" when it finishes a reply (5% volume, silent where
+`afplay` is missing).
+
 Install it in Claude Code:
 
 ```

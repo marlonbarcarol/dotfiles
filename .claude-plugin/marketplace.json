@@ -9,7 +9,7 @@
     {
       "name": "marlon-agentic",
       "source": "./plugins/marlon-agentic",
-      "description": "General engineering skills: state machine audits and more.",
+      "description": "General engineering skills (state machine audits and more) plus soft macOS sound cues.",
       "category": "engineering"
     }
   ]
