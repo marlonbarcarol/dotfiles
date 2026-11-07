@@ -17,12 +17,12 @@ source = "https://github.com/mattpocock/skills.git"
 [plugins."mattpocock-skills@mattpocock"]
 enabled = true
 
-# Marlon's own skills, from this repo (plugins/marloncodes)
-[marketplaces.marloncodes]
+# Marlon's own skills, from this repo (plugins/marlon-agentic)
+[marketplaces.marlonbarcarol]
 source_type = "git"
 source = "https://github.com/marlonbarcarol/dotfiles.git"
 
-[plugins."marloncodes@marloncodes"]
+[plugins."marlon-agentic@marlonbarcarol"]
 enabled = true
 
 [tui]

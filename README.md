@@ -162,30 +162,30 @@ you run Claude Code here:
 
 ## My skills, for any project
 
-This repo is also a plugin marketplace. Its `marloncodes` plugin
-([`plugins/marloncodes/`](plugins/marloncodes)) holds general skills that work
+This repo is also a plugin marketplace. Its `marlon-agentic` plugin
+([`plugins/marlon-agentic/`](plugins/marlon-agentic)) holds general skills that work
 in any project:
 
 | Skill | What for |
 |---|---|
-| `marloncodes:state-machine-audit` | finds an app's explicit and implicit state machines, documents them, proves which invalid states are reachable (retries, races, duplicate webhooks), then fixes them test-first |
+| `marlon-agentic:state-machine-audit` | finds an app's explicit and implicit state machines, documents them, proves which invalid states are reachable (retries, races, duplicate webhooks), then fixes them test-first |
 
 Install it in Claude Code:
 
 ```
 /plugin marketplace add marlonbarcarol/dotfiles
-/plugin install marloncodes@marloncodes
+/plugin install marlon-agentic@marlonbarcarol
 ```
 
 Or in Codex:
 
 ```bash
 codex plugin marketplace add marlonbarcarol/dotfiles
-codex plugin add marloncodes@marloncodes
+codex plugin add marlon-agentic@marlonbarcarol
 ```
 
 On my own Mac, `./dotfiles install` does the Claude Code part
-([details](docs/claude-code.md#your-own-plugin-marloncodes)).
+([details](docs/claude-code.md#your-own-plugin-marlon-agentic)).
 
 ## Safety
 

@@ -1,5 +1,5 @@
 {
-  "name": "marloncodes",
+  "name": "marlonbarcarol",
   "owner": {
     "name": "Marlon Barcarol",
     "url": "https://github.com/marlonbarcarol"
@@ -7,8 +7,8 @@
   "description": "Marlon's own agent skills for Claude Code and Codex, kept in his dotfiles.",
   "plugins": [
     {
-      "name": "marloncodes",
-      "source": "./plugins/marloncodes",
+      "name": "marlon-agentic",
+      "source": "./plugins/marlon-agentic",
       "description": "General engineering skills: state machine audits and more.",
       "category": "engineering"
     }
