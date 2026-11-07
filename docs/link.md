@@ -20,6 +20,7 @@ both `home/` and `~`.
 | `.zshrc` | Shell: Homebrew path, oh-my-zsh + plugins, mise, aliases, Starship prompt |
 | `.ideavimrc` | Vim keys inside IntelliJ (needs the IdeaVim plugin) |
 | `.nanorc` | nano: syntax colours |
+| `.gitmessage` | Commit message template: `git commit` (without `-m`) opens with the format |
 | `.config/starship.toml` | The prompt: path, git status, ❯ on the left; duration, versions, clock on the right |
 | `.config/git/ignore` | Files git ignores in every repo |
 | `.config/mise/config.toml` | Global language versions and tools (Node, Java, Gradle, Codex, …) |

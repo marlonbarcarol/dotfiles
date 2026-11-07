@@ -1,6 +1,7 @@
 .zshrc
 .ideavimrc
 .nanorc
+.gitmessage
 .config/starship.toml
 .config/git/ignore
 .config/mise/config.toml

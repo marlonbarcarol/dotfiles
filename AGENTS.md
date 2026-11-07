@@ -52,6 +52,7 @@ while the repo has no `CLAUDE.md`, so add new rules here.
 
 - British English in docs and messages. Docs are plain, second-person and
   written for someone who isn't a shell expert.
-- Conventional commits with a scope: `feat(iterm): …`, `fix: …`.
+- Commits follow `home/.gitmessage`: `<type>(<scope>): <what>`, then a body
+  saying why.
 - For tool reviews or version bumps, use the repo skills `tool-scout` and
   `dependency-updater` in `.claude/skills/`.

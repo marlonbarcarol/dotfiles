@@ -43,6 +43,8 @@
 [commit]
 	# Show the diff below the message while you write a commit
 	verbose = true
+	# Pre-fill the editor with the commit format (type(scope): what + why)
+	template = ~/.gitmessage
 
 [help]
 	# `git stauts` asks "did you mean status?"

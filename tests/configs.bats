@@ -67,3 +67,10 @@ load helpers
   [[ "$line" == *"--with-executables-from ansible-core"* ]] || false
   [[ "$line" == *"--python 3.13"* ]] || false
 }
+
+@test "commit template is linked and used by git" {
+  grep -qx '.gitmessage' "$REPO_ROOT/links.txt"
+  run git config -f "$REPO_ROOT/home/.gitconfig" commit.template
+  [ "$output" = "~/.gitmessage" ]
+  ! grep -v '^#' "$REPO_ROOT/home/.gitmessage" | grep -q . || false
+}
