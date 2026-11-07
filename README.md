@@ -166,7 +166,8 @@ This repo is public, so:
 
 - **Never tracked:** `~/.ssh`, `~/.aws`, `~/.kube`, `~/.npmrc`, `~/.docker`,
   `~/.claude.json`, Codex `auth.json`, iTerm's full settings file, and any
-  `*.local` file.
+  `*.local` file. The repo's `.gitignore` lists them too, so a copy that
+  lands in the repo by mistake can't be committed.
 - **`~/.gitconfig` is a local file**, not a link: it `[include]`s the repo's
   settings, so `git config --global …` (or tools that edit it) can never
   write your details into the repo.

@@ -1,8 +1,32 @@
 # Executor scratch space (plans, ledgers)
 .superpowers/
+# Session notes from the Remember plugin
+.remember/
+
 # Machine-specific / secret overrides are never tracked
 *.local
 .DS_Store
 # Note: home/.config/nvim/lazy-lock.json IS tracked (pins Neovim plugins)
 # zsh completion caches (contain local paths/hostname)
 .zcompdump*
+
+# Secrets and private state: never copy these into the repo (see README, Safety)
+.ssh/
+.aws/
+.kube/
+.docker/
+.npmrc
+.netrc
+.env
+.env.*
+.claude.json
+.claude/settings.local.json
+auth.json
+com.googlecode.iterm2.plist
+*.pem
+*.key
+
+# Editor and tool clutter
+.idea/
+.vscode/
+*.log
