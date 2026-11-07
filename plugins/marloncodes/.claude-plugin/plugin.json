@@ -1,0 +1,14 @@
+{
+  "name": "marloncodes",
+  "version": "0.1.0",
+  "description": "General engineering skills for Claude Code and Codex: state machine audits and more.",
+  "author": {
+    "name": "Marlon Barcarol",
+    "url": "https://github.com/marlonbarcarol"
+  },
+  "repository": "https://github.com/marlonbarcarol/dotfiles",
+  "license": "MIT",
+  "skills": [
+    "./skills/state-machine-audit"
+  ]
+}

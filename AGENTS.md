@@ -56,3 +56,6 @@ while the repo has no `CLAUDE.md`, so add new rules here.
   saying why.
 - For tool reviews or version bumps, use the repo skills `tool-scout` and
   `dependency-updater` in `.claude/skills/`.
+- `plugins/marloncodes/` holds general skills used in every project (not this
+  repo's own). Adding one: see `docs/claude-code.md`, then
+  `bats tests/plugins.bats`.

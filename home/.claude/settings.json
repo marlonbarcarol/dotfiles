@@ -152,7 +152,8 @@
     "jdtls-lsp@claude-plugins-official": true,
     "coderabbit@anthropic-plugin-directory": true,
     "image-view@claude-image-view": true,
-    "savvy-progress@claude-kit": true
+    "savvy-progress@claude-kit": true,
+    "marloncodes@marloncodes": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -171,6 +172,12 @@
       "source": {
         "source": "github",
         "repo": "johnnyvizz/claude-kit"
+      }
+    },
+    "marloncodes": {
+      "source": {
+        "source": "github",
+        "repo": "marlonbarcarol/dotfiles"
       }
     }
   },

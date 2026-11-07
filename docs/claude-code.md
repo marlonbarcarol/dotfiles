@@ -47,9 +47,9 @@ then run `./dotfiles link`.
 
 Enabled (from `home/.claude/settings.json`): claude-code-setup,
 claude-md-management, code-review, code-simplifier, coderabbit, codex,
-commit-commands, github, hookify, image-view, jdtls-lsp, mattpocock-skills,
-playwright, remember, savvy-progress, security-guidance, superpowers,
-typescript-lsp. (context7 is intentionally not included.)
+commit-commands, github, hookify, image-view, jdtls-lsp, marloncodes,
+mattpocock-skills, playwright, remember, savvy-progress, security-guidance,
+superpowers, typescript-lsp. (context7 is intentionally not included.)
 
 Marketplaces: Anthropic's official ones, `openai/codex-plugin-cc`, and two
 **community-run** ones: `jarrodwatts/claude-image-view` (image-view) and
@@ -58,6 +58,35 @@ Mac with your permissions, so review updates to them.
 
 The two LSP plugins need their language servers on your PATH: `jdtls` (Brewfile)
 and `typescript-language-server` + `typescript` (mise).
+
+### Your own plugin: marloncodes
+
+This repo is also a plugin marketplace called `marloncodes`
+(`.claude-plugin/marketplace.json`). Its one plugin, also `marloncodes`, lives
+in `plugins/marloncodes/` and holds your own general skills, for every project:
+
+| Skill | What for |
+|---|---|
+| `marloncodes:state-machine-audit` | finds an app's explicit and implicit state machines, documents them in `docs/state-machines.md`, proves which invalid states and transitions are reachable (retries, races, duplicate webhooks), then files issues and fixes them test-first |
+
+`./dotfiles install` adds the marketplace and installs the plugin. By hand:
+
+```bash
+claude plugin marketplace add marlonbarcarol/dotfiles
+claude plugin install marloncodes@marloncodes
+codex plugin marketplace add marlonbarcarol/dotfiles
+codex plugin add marloncodes@marloncodes
+```
+
+Both install from GitHub, so a change reaches them only after it's pushed to
+`main`, followed by `claude plugin update marloncodes@marloncodes` (Codex:
+`codex plugin marketplace upgrade`). To try an edit before pushing, run
+`claude --plugin-dir plugins/marloncodes`.
+
+Add a skill: create `plugins/marloncodes/skills/<name>/SKILL.md` (with
+`name: <name>` and a `description: Use when …` line), list it in
+`plugins/marloncodes/.claude-plugin/plugin.json`, bump its `version`, and run
+`bats tests/plugins.bats`.
 
 ## Skills
 
@@ -93,5 +122,5 @@ Codex itself comes from mise (`npm:@openai/codex`). Its settings file is
 owned by the Codex app, which keeps rewriting it with machine-specific entries,
 so `codex/config.toml` here is a **reference copy** of your preferences (model
 reasoning effort, approval policy, sandbox mode, status line, the mattpocock
-skills marketplace). Copy what you want into `~/.codex/config.toml` on a new
+and marloncodes marketplaces). Copy what you want into `~/.codex/config.toml` on a new
 Mac.
