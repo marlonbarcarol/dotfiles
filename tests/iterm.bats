@@ -73,3 +73,8 @@ DP() { echo "$HOME/Library/Application Support/iTerm2/DynamicProfiles"; }
   [ ! -e "$(DP)" ]
   ! grep -q '^defaults write' "$STUB_LOG" || false
 }
+
+@test "full-screen apps (vim) leave nothing in the scrollback" {
+  run jq -e '[.Profiles[] | ."Scrollback in Alternate Screen" == false] | all' "$REPO_ROOT/iterm/DynamicProfiles/dotfiles.json"
+  [ "$status" -eq 0 ]
+}

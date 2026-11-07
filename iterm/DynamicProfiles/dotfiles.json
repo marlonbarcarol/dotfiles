@@ -9,6 +9,7 @@
       "Mouse Reporting allow mouse wheel": true,
       "Mouse Reporting allow clicks and drags": false,
       "Automatically Enable Alternate Mouse Scroll": true,
+      "Scrollback in Alternate Screen": false,
       "Name": "Main",
       "Guid": "dotfiles-main",
       "Tags": [
@@ -24,6 +25,7 @@
       "Mouse Reporting allow mouse wheel": true,
       "Mouse Reporting allow clicks and drags": false,
       "Automatically Enable Alternate Mouse Scroll": true,
+      "Scrollback in Alternate Screen": false,
       "Name": "Hotkey Window",
       "Guid": "dotfiles-hotkey",
       "Tags": [
